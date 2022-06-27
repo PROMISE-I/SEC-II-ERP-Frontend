@@ -80,7 +80,7 @@ export const PATH = {
   },
   SALE_RETURN_VIEW: {
     path: '/saleReturnView',
-    requiresAuth: [ROLE.SALE_STAFF, ROLE.SALE_MANAGER, ROLE.GM, ROLE.ADMIN]
+    requiresAuth: [ROLE.SALE_STAFF,ROLE.SALE_MANAGER,ROLE.GM,ROLE.ADMIN]
   },
   CUSTOMER_VIEW: {
     path: '/customerView',
