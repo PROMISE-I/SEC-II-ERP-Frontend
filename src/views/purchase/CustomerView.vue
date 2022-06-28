@@ -257,7 +257,13 @@ export default {
               this.$message.success('创建成功!')
               this.dialogVisible = false
               this.resetForm()
-              this.getAllCustomer()
+              this.customerList = []
+              getAllCustomer({ params : { type: 'SUPPLIER' } }).then(_res => {
+                this.customerList = this.customerList.concat(_res.result)
+              })
+              getAllCustomer({ params : { type: 'SELLER' } }).then(_res => {
+                this.customerList = this.customerList.concat(_res.result)
+              })
             }
           })
         }
@@ -294,7 +300,13 @@ export default {
               this.$message.success('修改成功!')
               this.editDialogVisible = false
               this.resetForm()
-              this.getAllCustomer()
+              this.customerList = []
+              getAllCustomer({ params : { type: 'SUPPLIER' } }).then(_res => {
+                this.customerList = this.customerList.concat(_res.result)
+              })
+              getAllCustomer({ params : { type: 'SELLER' } }).then(_res => {
+                this.customerList = this.customerList.concat(_res.result)
+              })
             }
           })
         }
@@ -303,10 +315,16 @@ export default {
     deleteCustomer(){
       deleteCustomerById({params: {id: this.editForm.id}}).then(_res => {
         if(_res.msg == 'Success'){
-          this.$message.success('修改成功!')
+          this.$message.success('删除成功!')
               this.editDialogVisible = false
               this.resetForm()
-              this.getAllCustomer()
+              this.customerList = []
+              getAllCustomer({ params : { type: 'SUPPLIER' } }).then(_res => {
+                this.customerList = this.customerList.concat(_res.result)
+              })
+              getAllCustomer({ params : { type: 'SELLER' } }).then(_res => {
+                this.customerList = this.customerList.concat(_res.result)
+              })
         }
       })
     }

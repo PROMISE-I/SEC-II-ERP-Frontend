@@ -56,7 +56,6 @@ const SALE_RETURN_ALL = '/api/sale-returns/sheet-show';
 const SALE_RETURN_CREATE = '/api/sale-returns/sheet-make';
 // 客户管理
 const CUSTOMER_QUERY = '/api/customer/findByType';
-//TODO: BE CONSISTENT WITH BACKEND
 const CUSTOMER_CREATE = '/api/customer/addCustomer';
 const CUSTOMER_FIND_BY_ID = '/api/customer/findById';
 const CUSTOMER_UPDATE = 'api/customer/update';
