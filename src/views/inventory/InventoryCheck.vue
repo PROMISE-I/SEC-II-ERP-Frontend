@@ -9,6 +9,7 @@
         style="width: 100%;"
         :header-cell-style="{ 'text-align': 'center' }"
         :cell-style="{ 'text-align': 'center' }"
+        id="out-table"
       >
         <el-table-column fixed type="index" label="行号" min-width="12%">
         </el-table-column>
@@ -121,7 +122,22 @@ export default {
   methods: {
     exportAsExcel() {
       //TODO 导出Excel
-      alert("导出成Excel");
+      let tables = document.getElementById("out-table");
+                let table_book = this.$XLSX.utils.table_to_book(tables);
+                var table_write = this.$XLSX.write(table_book, {
+                    bookType: "xlsx",
+                    bookSST: true,
+                    type: "array"
+                });
+                try {
+                    this.$FileSaver.saveAs(
+                        new Blob([table_write], { type: "application/octet-stream" }),
+                        "sheetjs.xlsx"
+                    );
+                } catch (e) {
+                    if (typeof console !== "undefined") console.log(e, table_write);
+                }
+                return table_write;
     },
     showProduct(row) {
       this.cur_row = row;
