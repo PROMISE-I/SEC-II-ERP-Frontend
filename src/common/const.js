@@ -87,6 +87,15 @@ export const PATH = {
     requiresAuth: [ROLE.SALE_STAFF,ROLE.SALE_MANAGER,ROLE.GM,ROLE.ADMIN]
   },
 
+  // FINANCIAL_STAFF
+  BANK_ACCOUNT_MANAGEMENT: {
+    path: '/bankAccountManagement',
+    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.ADMIN]
+  },
+  // TODO
+
+  // HR
+
   // GM
   GM_APPROVAL: {
     path: '/approval',
