@@ -14,6 +14,7 @@
         active-text-color="#7e57c2"
         router
       >
+
         <el-submenu index="1"
           v-if="permit(PATH.COMMODITY_CLASSIFICATION.requiresAuth)">
           <template slot="title">
@@ -70,6 +71,7 @@
             <span slot="title">库存盘点</span>
           </el-menu-item>
         </el-submenu>
+
         <el-submenu index="3"
           v-if="permit(PATH.CUSTOMER_VIEW.requiresAuth)">
           <template slot="title">
@@ -112,7 +114,102 @@
             <span slot="title">客户管理</span>
           </el-menu-item>
         </el-submenu>
+
         <el-submenu index="4"
+                    v-if="permit(PATH.BANK_ACCOUNT_MANAGEMENT.requiresAuth)">
+          <template slot="title">
+            <i class="el-icon-receiving"></i>
+            <span slot="title">财务管理</span>
+          </template>
+          <el-menu-item
+              :index="PATH.BANK_ACCOUNT_MANAGEMENT.path"
+              v-if="permit(PATH.BANK_ACCOUNT_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">账户管理</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.RECEIVE_MONEY_SHEET_MANAGEMENT.path"
+              v-if="permit(PATH.RECEIVE_MONEY_SHEET_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">收款单管理</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.PAY_MONEY_SHEET_MANAGEMENT.path"
+              v-if="permit(PATH.PAY_MONEY_SHEET_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">付款单管理</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.SALARY_SHEET_MANAGEMENT.path"
+              v-if="permit(PATH.SALARY_SHEET_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">工资单管理</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.SALE_DETAIL_VIEW.path"
+              v-if="permit(PATH.SALE_DETAIL_VIEW.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">查看销售明细表</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.BUSINESS_HISTORY_VIEW.path"
+              v-if="permit(PATH.BUSINESS_HISTORY_VIEW.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">查看经营历程表</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.OPERATE_SHEET_VIEW.path"
+              v-if="permit(PATH.OPERATE_SHEET_VIEW.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">查看经营情况表</span>
+          </el-menu-item>
+        </el-submenu>
+
+        <el-submenu index="5"
+                    v-if="permit(PATH.STAFF_MANAGEMENT.requiresAuth)">
+          <template slot="title">
+            <i class="el-icon-receiving"></i>
+            <span slot="title">人力资源管理</span>
+          </template>
+          <el-menu-item
+              :index="PATH.STAFF_MANAGEMENT.path"
+              v-if="permit(PATH.STAFF_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">员工管理</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.POSITION_MANAGEMENT.path"
+              v-if="permit(PATH.POSITION_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">岗位管理</span>
+          </el-menu-item>
+        </el-submenu>
+
+        <el-submenu index="6"
+                    v-if="permit(PATH.ATTENDANCE.requiresAuth)">
+          <template slot="title">
+            <i class="el-icon-receiving"></i>
+            <span slot="title">打卡管理</span>
+          </template>
+          <el-menu-item
+              :index="PATH.ATTENDANCE.path"
+              v-if="permit(PATH.ATTENDANCE.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">今日打卡</span>
+          </el-menu-item>
+        </el-submenu>
+
+        <el-submenu index="7"
           v-if="permit(PATH.GM_APPROVAL.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>

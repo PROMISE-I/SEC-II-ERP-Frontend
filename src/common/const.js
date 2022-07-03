@@ -87,14 +87,50 @@ export const PATH = {
     requiresAuth: [ROLE.SALE_STAFF,ROLE.SALE_MANAGER,ROLE.GM,ROLE.ADMIN]
   },
 
-  // FINANCIAL_STAFF
+  // FINANCIAL_STAFF 财务管理人员
   BANK_ACCOUNT_MANAGEMENT: {
     path: '/bankAccountManagement',
-    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.ADMIN]
+    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
   },
-  // TODO
+  RECEIVE_MONEY_SHEET_MANAGEMENT: {
+    path: '/receiveMoneySheetManagement',
+    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
+  },
+  PAY_MONEY_SHEET_MANAGEMENT: {
+    path: '/payMoneySheetManagement',
+    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
+  },
+  SALARY_SHEET_MANAGEMENT: {
+    path: '/salarySheetManagement',
+    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
+  }, // TODO: 工资单 TBD
+  SALE_DETAIL_VIEW: {
+    path: '/saleDetailView',
+    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
+  }, // 查看销售明细表
+  BUSINESS_HISTORY_VIEW: {
+    path: '/businessHistoryView',
+    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
+  }, // 查看经营历程表
+  OPERATE_SHEET_VIEW: {
+    path: '/operateSheetView',
+    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
+  }, // 查看经营情况表
 
-  // HR
+  // HR 人力资源人员
+  STAFF_MANAGEMENT: {
+    path: '/staffManagement',
+    requiresAuth: [ROLE.HR, ROLE.ADMIN]
+  },
+  POSITION_MANAGEMENT: {
+    path: '/positionManagement',
+    requiresAuth: [ROLE.HR, ROLE.ADMIN]
+  },
+
+  ATTENDANCE: {
+    path: '/attendance',
+    requiresAuth: [ROLE.HR, ROLE.SALE_MANAGER, ROLE.INVENTORY_MANAGER, ROLE.FINANCIAL_STAFF, ROLE.SALE_STAFF, ROLE.ADMIN]
+  }, // 打卡
 
   // GM
   GM_APPROVAL: {

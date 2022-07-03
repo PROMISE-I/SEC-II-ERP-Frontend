@@ -18,7 +18,6 @@ const COMMODITY_CREATE = '/api/product/create';
 const COMMODITY_UPDATE = '/api/product/update';
 const COMMODITY_DELETE = '/api/product/delete';
 
-
 const WAREHOUSE_INPUT = '/api/warehouse/input';
 const WAREHOUSE_OUTPUT_PRE = '/api/warehouse/product/count';
 const WAREHOUSE_OUTPUT = '/api/warehouse/output';
@@ -31,6 +30,13 @@ const WAREHOUSE_OUTPUTSHEET_APPROVE = '/api/warehouse/outputSheet/approve';
 const WAREHOUSE_INPUTSHEET_APPROVE = '/api/warehouse/inputSheet/approve';
 const WAREHOUSE_DAILY_COUNT = '/api/warehouse/warehouse/counting';
 
+// 账户管理 / 银行账户管理
+const BANK_ACCOUNT_ALL = '/api/bankAccount/'; // TODO: TBD
+const BANK_ACCOUNT_CREATE = '/api/bankAccount/create';
+const BANK_ACCOUNT_DELETE = '/api/bankAccount/delete';
+const BANK_ACCOUNT_UPDATE = '/api/bankAccount/update';
+const BANK_ACCOUNT_FIND_BY_AMBIGUOUS_NAME = 'api/bankAccount/findByAmbiguousName';
+const BANK_ACCOUNT_FIND_BY_ID = 'api/bankAccount/findById';
 
 // 销售管理
 // 进货管理
@@ -72,6 +78,14 @@ module.exports = {
   AUTH,
   LOGIN,
   REGISTER,
+
+  BANK_ACCOUNT_ALL,
+  BANK_ACCOUNT_CREATE,
+  BANK_ACCOUNT_DELETE,
+  BANK_ACCOUNT_UPDATE,
+  BANK_ACCOUNT_FIND_BY_AMBIGUOUS_NAME,
+  BANK_ACCOUNT_FIND_BY_ID,
+
   COMMODITY_CLASSIFICATION_ALL,
   COMMODITY_CLASSIFICATION_CREATE,
   COMMODITY_CLASSIFICATION_UPDATE,

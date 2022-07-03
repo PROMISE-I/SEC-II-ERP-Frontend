@@ -26,6 +26,16 @@ const SaleView = () => import("../views/sale/SaleView");
 const SaleReturnView = () => import("../views/sale/SaleReturnView");
 const CustomerView = () => import ("../views/purchase/CustomerView");
 const Approval = () => import("../views/approval/Approval");
+const BankAccountManagement = () => import("../views/accountManagement/BankAccountManagement");
+const ReceiveMoneySheetManagement = () => import("../views/financialManagement/ReceiveMoneySheetManagement");
+const PayMoneySheetManagement = () => import("../views/financialManagement/PayMoneySheetManagement");
+const SalarySheetManagement = () => import("../views/financialManagement/SalarySheetManagement");
+const SaleDetailView = () => import("../views/financialManagement/SaleDetailView");
+const BusinessHistoryView = () => import("../views/financialManagement/BusinessHistoryView");
+const OperateSheetView = () => import("../views/financialManagement/OperateSheetView");
+const StaffManagement = () => import("../views/staff/StaffManagement")
+const PositionManagement = () => import("../views/staff/PositionManagement")
+const Attendance = () => import("../views/attendance/Attendance")
 
 Vue.use(VueRouter);
 
@@ -145,6 +155,59 @@ const routes = [
     component: CustomerView,
     name: "CustomerView",
     meta: { requiresAuth: PATH.CUSTOMER_VIEW.requiresAuth }
+  },
+  // 银行账户管理
+  {
+    path: PATH.BANK_ACCOUNT_MANAGEMENT.path,
+    component: BankAccountManagement, // BankAccountManagement was used, but why?
+    meta: { requiresAuth: PATH.BANK_ACCOUNT_MANAGEMENT.requiresAuth }
+  },
+  {
+    path: PATH.RECEIVE_MONEY_SHEET_MANAGEMENT.path,
+    component: ReceiveMoneySheetManagement,
+    meta: { requiresAuth: PATH.RECEIVE_MONEY_SHEET_MANAGEMENT.requiresAuth }
+  },
+  {
+    path: PATH.PAY_MONEY_SHEET_MANAGEMENT.path,
+    component: PayMoneySheetManagement,
+    meta: { requiresAuth: PATH.PAY_MONEY_SHEET_MANAGEMENT.requiresAuth }
+  },
+  {
+    path: PATH.SALARY_SHEET_MANAGEMENT.path,
+    component: SalarySheetManagement,
+    meta: { requiresAuth: PATH.SALARY_SHEET_MANAGEMENT.requiresAuth }
+  },
+  {
+    path: PATH.SALE_DETAIL_VIEW.path,
+    component: SaleDetailView,
+    meta: { requiresAuth: PATH.SALE_DETAIL_VIEW.requiresAuth }
+  }, // 查看销售明细表
+  {
+    path: PATH.BUSINESS_HISTORY_VIEW.path,
+    component: BusinessHistoryView,
+    meta: { requiresAuth: PATH.BUSINESS_HISTORY_VIEW.requiresAuth }
+  }, // 查看经营历程表
+  {
+    path: PATH.OPERATE_SHEET_VIEW.path,
+    component: OperateSheetView,
+    meta: { requiresAuth: PATH.OPERATE_SHEET_VIEW.requiresAuth }
+  }, // 查看经营情况表
+  // 人力资源管理
+  {
+    path: PATH.STAFF_MANAGEMENT.path,
+    component: StaffManagement,
+    meta: { requiresAuth: PATH.STAFF_MANAGEMENT.requiresAuth }
+  },
+  {
+    path: PATH.POSITION_MANAGEMENT.path,
+    component: PositionManagement,
+    meta: { requiresAuth: PATH.POSITION_MANAGEMENT.requiresAuth }
+  },
+  // 打卡
+  {
+    path: PATH.ATTENDANCE.path,
+    component: Attendance,
+    meta: { requiresAuth: PATH.ATTENDANCE.requiresAuth }
   },
   // 审批
   {
