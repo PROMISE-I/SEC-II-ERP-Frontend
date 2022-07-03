@@ -88,7 +88,7 @@ import {
   updateBankAccount,
   findBankAccountByAmbiguousName,
   findBankAccountById
-} from "../../network/account";
+} from "../../network/accountManagement";
 export default {
   name: 'BankAccountManagement',
   components: {
