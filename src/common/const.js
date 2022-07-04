@@ -103,7 +103,7 @@ export const PATH = {
   SALARY_SHEET_MANAGEMENT: {
     path: '/salarySheetManagement',
     requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
-  }, // TODO: 工资单 TBD
+  },
   SALE_DETAIL_VIEW: {
     path: '/saleDetailView',
     requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]

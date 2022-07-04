@@ -71,6 +71,17 @@ const SALE_PURCHASE_CREATE = '/api/purchase/sheet-make';
 const SALE_CUSTOMER_QUERY = '/api/customer/findByType';
 const SALE_CUSTOMER_MAX = '/api/sale/maxAmountCustomer';
 
+// 员工管理
+const STAFF_CREATE = '/api/staff/create';
+const STAFF_ALL = '/api/staff/findAll';
+const STAFF_UPDATE = '/api/staff/update';
+const STAFF_DELETE = '/api/staff/delete';
+
+// 岗位管理
+const POSITION_ALL = '/api/position/findAll';
+const POSITION_UPDATE = 'api/position/update';
+const POSITION_FIND_BY_TITLE = 'api/position/findByTitle';
+
 module.exports = {
   TEST_GET,
   TEST_POST,
@@ -133,5 +144,14 @@ module.exports = {
   CUSTOMER_CREATE,
   CUSTOMER_FIND_BY_ID,
   CUSTOMER_UPDATE,
-  CUSTOMER_DELETE
+  CUSTOMER_DELETE,
+
+  STAFF_ALL,
+  STAFF_CREATE,
+  STAFF_DELETE,
+  STAFF_UPDATE,
+
+  POSITION_ALL,
+  POSITION_FIND_BY_TITLE,
+  POSITION_UPDATE
 };

@@ -15,34 +15,34 @@
             width="70">
         </el-table-column>
         <el-table-column
-            prop="basicSalary"
+            prop="baseSalary"
             label="基本工资"
-            width="70">
+            width="100">
         </el-table-column>
         <el-table-column
             prop="specialSalary"
             label="岗位工资"
-            width="70">
+            width="100">
         </el-table-column>
         <el-table-column
             prop="level"
             label="岗位级别"
-            width="50">
+            width="100">
         </el-table-column>
         <el-table-column
             prop="salaryCalculationMethod"
             label="薪资计算方式"
-            width="50">
+            width="300">
         </el-table-column>
         <el-table-column
             prop="salaryPayMethod"
             label="薪资发放方式"
-            width="50">
+            width="300">
         </el-table-column>
         <el-table-column
             prop="tax"
             label="扣税信息"
-            width="50">
+            width="100">
         </el-table-column>
         <el-table-column
             label="操作">
@@ -67,8 +67,8 @@
             <el-input v-model="editForm.title"></el-input>
             <!-- TODO: 名称不可修改 -->
           </el-form-item>
-          <el-form-item label="基本工资: " prop="basicSalary">
-            <el-input v-model="editForm.basicSalary"></el-input>
+          <el-form-item label="基本工资: " prop="baseSalary">
+            <el-input v-model="editForm.baseSalary"></el-input>
           </el-form-item>
           <el-form-item label="岗位工资: " prop="specialSalary">
             <el-input v-model="editForm.specialSalary"></el-input>
@@ -97,7 +97,11 @@
 <script>
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
-
+import {
+  getAllPosition,
+  updatePosition,
+  findPositionByTitle
+} from "../../network/staff"
 export default {
   name: "PositionManagement",
   components: {
@@ -105,7 +109,64 @@ export default {
     Title
   },
   data() {
+    return {
+      positionList: [],
+      diaLogVisible: false,
+      editForm: {},
+      editDialogVisible: false
+    }
+  },
+  async mounted() {
+    await getAllPosition({ params : {} }).then(_res => {
+      this.positionList = this.positionList.concat(_res.result)
+    })
+  },
+  methods: {
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+          .then(_ => {
+            this.resetForm()
+            done();
+          })
+          .catch(_ => {});
+    },
+    resetForm() {
+      this.editForm = {}
+    },
+    showEditDialog(title_){
+      findPositionByTitle({params: { title: title_}}).then(_res => {
+        if(_res.msg == 'Success'){
+          let position = _res.result
+          this.editForm = position
+          this.editDialogVisible = true
+        }else {
+          console.log('Something wrong!')
+          alert('Something wrong!')
+        }
+      })
+    },
+    updateForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.editForm.baseSalary = Number(this.editForm.baseSalary)
+          this.editForm.specialSalary = Number(this.editForm.specialSalary)
+          this.editForm.level = parseInt(this.editForm.level)
+          this.tax = Number(this.editForm.tax)
 
+          updatePosition(this.editForm).then(_res => {
+            if (_res.msg == 'Success') {
+              this.$message.success('修改成功!')
+              this.editDialogVisible = false
+              this.resetForm()
+              this.positionList = []
+              getAllPosition({params: {}}).then(_res => {
+                this.positionList = this.positionList.concat(_res.result)
+              })
+            }
+          })
+        }
+      })
+    }
   }
 }
 </script>
