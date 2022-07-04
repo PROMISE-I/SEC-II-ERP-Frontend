@@ -7,26 +7,30 @@
 
     <div class="table-body">
       <el-table
-        :data="draft_list"
-        style="width: 100%;"
-        :header-cell-style="{ 'text-align': 'center' }"
-        :cell-style="{ 'text-align': 'center' }"
+          :data="draft_list"
+          style="width: 100%;"
+          :header-cell-style="{ 'text-align': 'center' }"
+          :cell-style="{ 'text-align': 'center' }"
       >
         <el-table-column fixed type="index" label="行号" min-width="12%">
         </el-table-column>
         <el-table-column prop="id" label="Id" min-width="13%">
         </el-table-column>
-        <el-table-column label="订单Id" min-width="13%" >
+        <el-table-column label="订单Id" min-width="13%">
           <template slot-scope="scope">
-            <el-button type="text" @click="showSaleSheet(scope.row)" v-if="scope.row.type === '入库'">{{ scope.row.purchaseSheetId }}</el-button>
-            <el-button type="text" @click="showSaleSheet(scope.row)" v-else-if="scope.row.type === '出库'">{{ scope.row.saleSheetId }}</el-button>
+            <el-button type="text" @click="showSaleSheet(scope.row)" v-if="scope.row.type === '入库'">
+              {{ scope.row.purchaseSheetId }}
+            </el-button>
+            <el-button type="text" @click="showSaleSheet(scope.row)" v-else-if="scope.row.type === '出库'">
+              {{ scope.row.saleSheetId }}
+            </el-button>
           </template>
         </el-table-column>
         <el-table-column prop="type" label="类型" min-width="10%">
         </el-table-column>
         <el-table-column prop="batchId" label="批次" min-width="10%">
           <template slot-scope="scope">
-            <span v-if="scope.row.type === '入库'">{{scope.row.batchId}}</span>
+            <span v-if="scope.row.type === '入库'">{{ scope.row.batchId }}</span>
             <span v-else-if="scope.row.type === '出库'">无</span>
           </template>
         </el-table-column>
@@ -34,8 +38,10 @@
         </el-table-column>
         <el-table-column label="操作" min-width="20%">
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-check"  circle size="mini" @click="confirm(scope.row, 'SUCCESS')"></el-button>
-            <el-button type="danger" icon="el-icon-close" circle size="mini" @click="confirm(scope.row, 'FAILURE')"></el-button>
+            <el-button type="primary" icon="el-icon-check" circle size="mini"
+                       @click="confirm(scope.row, 'SUCCESS')"></el-button>
+            <el-button type="danger" icon="el-icon-close" circle size="mini"
+                       @click="confirm(scope.row, 'FAILURE')"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -63,12 +69,13 @@ import {
   warehouseInputSheetApprove,
   warehouseOutputSheetApprove
 } from "@/network/warehouse";
-import { getPurchaseBySheetId } from "@/network/purchase";
+import {getPurchaseBySheetId} from "@/network/purchase";
 import PurchaseList from "@/views/purchase/components/PurchaseList";
-import { findAllProduct } from "@/network/product";
+import {findAllProduct} from "@/network/product";
 import Echarts from "@/components/Echarts";
-import { getSaleBySheetId } from "@/network/sale";
+import {getSaleBySheetId} from "@/network/sale";
 import SaleList from "@/views/sale/components/SaleList";
+
 export default {
   components: {
     SaleList,
@@ -79,7 +86,7 @@ export default {
   },
   created() {
     getWarehouseInputSheet({ //获取进货单草稿
-      params : {
+      params: {
         state: "DRAFT",
       }
     }).then(res => {
@@ -90,7 +97,7 @@ export default {
       });
 
       getWarehouseOutputSheet({ //获取销售单草稿
-        params : {
+        params: {
           state: "DRAFT",
         }
       }).then(res => {
@@ -106,7 +113,7 @@ export default {
 
     this.fetchEchartsData(); //获取商品信息
   },
-  data(){
+  data() {
     return {
       draft_list: [], //出入库草稿列表
       dialogVisible: false,
@@ -116,11 +123,11 @@ export default {
     }
   },
   computed: {
-    dialogTitle(){ //确认dialog的标题
-      if(this.cur_row) {
-        if(this.cur_row.type === "入库") {
+    dialogTitle() { //确认dialog的标题
+      if (this.cur_row) {
+        if (this.cur_row.type === "入库") {
           return "确认进货单内容";
-        }else if(this.cur_row.type === "出库") {
+        } else if (this.cur_row.type === "出库") {
           return "确认销售单内容";
         }
       }
@@ -137,17 +144,17 @@ export default {
   methods: {
     fetchEchartsData() {
       findAllProduct()
-        .then(_res => {
-          console.log("获取商品库存信息", _res);
-          this.product_data = _res.result;
-        })
-        .catch(_err => {
-          console.log(_err);
-        });
+          .then(_res => {
+            console.log("获取商品库存信息", _res);
+            this.product_data = _res.result;
+          })
+          .catch(_err => {
+            console.log(_err);
+          });
     },
-    showSaleSheet(row){
+    showSaleSheet(row) {
       //获取进货单或者销售单详情，在dialog中展示
-      if(row.type === '入库') {
+      if (row.type === '入库') {
         console.log("进货单Id", row.purchaseSheetId);
         getPurchaseBySheetId({
           params: {
@@ -158,7 +165,7 @@ export default {
           this.successList = [];
           this.successList.push(_res.result);
         })
-      }else if(row.type === '出库'){
+      } else if (row.type === '出库') {
         console.log("销售单Id", row.saleSheetId);
         getSaleBySheetId({
           params: {
@@ -176,7 +183,7 @@ export default {
     confirm(row, state) {
       //出入库确认操作
       //TODO 确认之后响应式更新echarts
-      this.$confirm('请确认'+row.type+'操作', '提示', {
+      this.$confirm('请确认' + row.type + '操作', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -196,7 +203,7 @@ export default {
             this.draft_list.splice(row.index, 1);
             await this.fetchEchartsData();
           })
-        }else if (row.type === "入库"){
+        } else if (row.type === "入库") {
           warehouseInputSheetApprove({
             params: {
               sheetId: row.id,
