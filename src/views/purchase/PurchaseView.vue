@@ -39,33 +39,33 @@
       </el-tabs>
     </div>
     <el-dialog
-      title="创建进货单"
-      :visible.sync="dialogVisible"
-      width="40%"
-      :before-close="handleClose">
+        title="创建进货单"
+        :visible.sync="dialogVisible"
+        width="40%"
+        :before-close="handleClose">
       <div style="width: 90%; margin: 0 auto">
         <el-form :model="purchaseForm" label-width="80px" ref="purchaseForm" :rules="rules">
           <el-form-item label="供应商: " prop="supplier">
             <el-select v-model="purchaseForm.supplier" placeholder="请选择供应商">
               <el-option
-                v-for="item in suppliers"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id">
+                  v-for="item in suppliers"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item
-            v-for="(item, index) in purchaseForm.purchaseSheetContent"
-            :key="index"
-            :label="'商品' + index">
+              v-for="(item, index) in purchaseForm.purchaseSheetContent"
+              :key="index"
+              :label="'商品' + index">
             <div>
               <el-select v-model="item.pid" placeholder="请选择商品id" style="width: 40%; margin-right: 5%">
                 <el-option
-                  v-for="item1 in commodityList"
-                  :key="item1.id"
-                  :label="item1.id"
-                  :value="item1.id">
+                    v-for="item1 in commodityList"
+                    :key="item1.id"
+                    :label="item1.id"
+                    :value="item1.id">
                 </el-option>
               </el-select>
               <el-input v-model="item.quantity" style="width: 25%; margin-right: 5%" placeholder="请输入商品数量"></el-input>
@@ -73,7 +73,9 @@
             </div>
             <div style="margin-top: 10px">
               <el-input v-model="item.remark" style="width: 70%; margin-right: 10%" placeholder="请填写备注"></el-input>
-              <el-button type="text" size="small" @click="addProduct" v-if="index === purchaseForm.purchaseSheetContent.length - 1">添加</el-button>
+              <el-button type="text" size="small" @click="addProduct"
+                         v-if="index === purchaseForm.purchaseSheetContent.length - 1">添加
+              </el-button>
               <el-button type="text" size="small" @click.prevent="removeProduct(item)" v-if="index !== 0">删除</el-button>
             </div>
           </el-form-item>
@@ -93,8 +95,9 @@
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
 import PurchaseList from "./components/PurchaseList"
-import { getAllPurchase, createPurchase, getAllCustomer } from '../../network/purchase'
-import { getAllCommodity } from '../../network/commodity'
+import {getAllPurchase, createPurchase, getAllCustomer} from '../../network/purchase'
+import {getAllCommodity} from '../../network/commodity'
+
 export default {
   name: 'PurchaseView',
   components: {
@@ -124,7 +127,7 @@ export default {
       suppliers: [],
       rules: {
         supplier: [
-          { required: true, message: '请选择一个供应商', trigger: 'change' }
+          {required: true, message: '请选择一个供应商', trigger: 'change'}
         ],
       },
       commodityList: []
@@ -134,9 +137,9 @@ export default {
     this.getPurchase()
     getAllCommodity({}).then(_res => {
       let res = _res.result
-      res.forEach(item => this.commodityList.push({ id: item.id }))
+      res.forEach(item => this.commodityList.push({id: item.id}))
     })
-    getAllCustomer({ params : { type: 'SUPPLIER' } }).then(_res => {
+    getAllCustomer({params: {type: 'SUPPLIER'}}).then(_res => {
       this.suppliers = _res.result
     })
   },
@@ -152,11 +155,12 @@ export default {
     },
     handleClose(done) {
       this.$confirm('确认关闭？')
-        .then(_ => {
-          this.resetForm()
-          done();
-        })
-        .catch(_ => {});
+          .then(_ => {
+            this.resetForm()
+            done();
+          })
+          .catch(_ => {
+          });
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
