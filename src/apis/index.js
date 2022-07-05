@@ -32,7 +32,7 @@ const WAREHOUSE_DAILY_COUNT = '/api/warehouse/warehouse/counting';
 
 // 账户管理 / 银行账户管理
 const BANK_ACCOUNT_ALL = '/api/bankAccount/'; // TODO: TBD
-const BANK_ACCOUNT_CREATE = '/api/bankAccount/create';
+const BANK_ACCOUNT_CREATE = '/api/bankAccount/add'; // 注意：别的地方一般都是 create ，只有这里是 add
 const BANK_ACCOUNT_DELETE = '/api/bankAccount/delete';
 const BANK_ACCOUNT_UPDATE = '/api/bankAccount/update';
 const BANK_ACCOUNT_FIND_BY_AMBIGUOUS_NAME = 'api/bankAccount/findByAmbiguousName';
@@ -79,8 +79,25 @@ const STAFF_DELETE = '/api/staff/delete';
 
 // 岗位管理
 const POSITION_ALL = '/api/position/findAll';
-const POSITION_UPDATE = 'api/position/update';
-const POSITION_FIND_BY_TITLE = 'api/position/findByTitle';
+const POSITION_UPDATE = '/api/position/update';
+const POSITION_FIND_BY_TITLE = '/api/position/findByTitle';
+
+// 打卡
+const ATTENDANCE_CLOCK_IN = '/api/attendance/clockIn';
+const ATTENDANCE_CHECK = '/api/attendance/check';
+
+// 收款单
+const RECEIVE_MONEY_FIND_BY_STATE = '/api/receiveMoney/sheet-show';
+const RECEIVE_MONEY_CREATE = '/api/receiveMoney/sheet-make';
+const RECEIVE_MONEY_FIRST_APPROVAL = '/api/receiveMoney/first-approval';
+const RECEIVE_MONEY_SECOND_APPROVAL = '/api/receiveMoney/second-approval';
+
+// 付款单
+const PAY_MONEY_FIND_BY_STATE = '/api/payMoney/sheet-show';
+const PAY_MONEY_CREATE = '/api/payMoney/sheet-make';
+const PAY_MONEY_FIRST_APPROVAL = '/api/payMoney/first-approval';
+const PAY_MONEY_SECOND_APPROVAL = '/api/payMoney/second-approval';
+
 
 module.exports = {
   TEST_GET,
@@ -153,5 +170,18 @@ module.exports = {
 
   POSITION_ALL,
   POSITION_FIND_BY_TITLE,
-  POSITION_UPDATE
+  POSITION_UPDATE,
+
+  ATTENDANCE_CLOCK_IN,
+  ATTENDANCE_CHECK,
+
+  RECEIVE_MONEY_FIND_BY_STATE,
+  RECEIVE_MONEY_CREATE,
+  RECEIVE_MONEY_FIRST_APPROVAL,
+  RECEIVE_MONEY_SECOND_APPROVAL,
+
+  PAY_MONEY_FIND_BY_STATE,
+  PAY_MONEY_CREATE,
+  PAY_MONEY_FIRST_APPROVAL,
+  PAY_MONEY_SECOND_APPROVAL
 };

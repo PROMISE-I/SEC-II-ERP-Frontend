@@ -150,7 +150,6 @@ export default {
       this.editForm = {}
     },
     showEditDialog(id_){
-      //TODO: Query backend and then show the customer info
       findBankAccountById({params: { id: id_}}).then(_res => {
         if(_res.msg == 'Success'){
           let bankAccount = _res.result

@@ -17,17 +17,17 @@
         <el-table-column
             prop="name"
             label="姓名"
-            width="70">
+            width="100">
         </el-table-column>
         <el-table-column
             prop="gender"
             label="性别"
-            width="70">
+            width="100">
         </el-table-column>
         <el-table-column
             prop="birthday"
             label="出生日期"
-            width="50">
+            width="100">
         </el-table-column>
         <el-table-column
             prop="phone"
@@ -62,7 +62,7 @@
                width="40%"
                :before-close="handleClose">
       <div style="width: 90%; margin: 0 auto">
-        <el-form :model="staffForm" label-width="100px" ref="staffForm" :rules="rules">
+        <el-form :model="staffForm" label-width="100px" ref="staffForm">
           <el-form-item label="姓名: " prop="name">
             <el-input v-model="staffForm.name"></el-input>
           </el-form-item>
@@ -89,7 +89,7 @@
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm('customerForm')">确认新增</el-button>
+        <el-button type="primary" @click="submitForm('staffForm')">确认新增</el-button>
       </span>
     </el-dialog>
     <el-dialog title="编辑员工信息"
@@ -127,7 +127,7 @@
         <el-button type="primary" @click="updateForm('editForm')">确认修改</el-button>
       </span>
       <span slot="footer" class="dialog-footer">
-        <el-button type="danger" @click="deleteCustomer">删除</el-button>
+        <el-button type="danger" @click="deleteStaff">删除</el-button>
       </span>
     </el-dialog>
   </Layout>
@@ -155,7 +155,14 @@ export default {
     return {
       staffList: [],
       dialogVisible: false,
-      staffForm: {},
+      staffForm: {
+        name: '',
+        gender: '',
+        birthday: '',
+        phone: '',
+        position: '',
+        balance: 0
+      },
       editDialogVisible: false,
       editForm: {},
       genderList: ['male', 'female'],
@@ -201,10 +208,10 @@ export default {
     },
     showEditDialog(id_){
       // TODO: findStaffById
-      findStaffById({params: { id: id_}}).then(_res => {
+      findStaffById({params: { id: id_ }}).then(_res => {
         if(_res.msg == 'Success'){
-          let customer = _res.result
-          this.editForm = customer
+          let staff = _res.result
+          this.editForm = staff
           this.editDialogVisible = true
         }else {
           console.log('Something wrong!')

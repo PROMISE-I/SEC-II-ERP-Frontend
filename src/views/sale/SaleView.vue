@@ -64,7 +64,7 @@
           <el-form-item
             v-for="(item, index) in saleForm.saleSheetContent"
             :key="index"
-            :label="'商品' + index">
+            :label="'商品' + (index + 1)">
             <div>
               <el-select v-model="item.pid" placeholder="请选择商品id" style="width: 40%; margin-right: 5%">
                 <el-option
