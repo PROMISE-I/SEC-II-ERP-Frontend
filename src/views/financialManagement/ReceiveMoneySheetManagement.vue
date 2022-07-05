@@ -56,7 +56,7 @@
             </el-select>
           </el-form-item>
           <el-form-item
-              v-for="(item, index) in receiveMoneyForm.receiveMoneyTransferList"
+              v-for="(item, index) in receiveMoneyForm.transferList"
               :key="index"
               :label="'转账' + (index + 1)">
             <div>
@@ -72,7 +72,7 @@
             </div>
             <div style="margin-top: 10px">
               <el-input v-model="item.remark" style="width: 75%; margin-right: 10%" placeholder="请填写备注"></el-input>
-              <el-button type="text" size="small" @click="addBankAccount" v-if="index === receiveMoneyForm.receiveMoneyTransferList.length - 1">添加</el-button>
+              <el-button type="text" size="small" @click="addBankAccount" v-if="index === receiveMoneyForm.transferList.length - 1">添加</el-button>
               <el-button type="text" size="small" @click.prevent="removeBankAccount(item)" v-if="index !== 0">删除</el-button>
             </div>
           </el-form-item>
@@ -116,7 +116,7 @@ export default {
       failureList: [],
       dialogVisible: false,
       receiveMoneyForm: {
-        receiveMoneyTransferList: [
+        transferList: [
           {
             bankAccountId: '',
             amount: '',
@@ -166,15 +166,13 @@ export default {
     },
     resetForm() {
       this.receiveMoneyForm = {
-        receiveMoneyForm: {
-          receiveMoneyTransferList: [
-            {
-              bankAccountId: '',
-              amount: '',
-              remark: ''
-            }
-          ]
-        }
+        transferList: [
+          {
+            bankAccountId: '',
+            amount: '',
+            remark: ''
+          }
+        ]
       }
     },
     submitForm(formName) {
@@ -184,13 +182,13 @@ export default {
           this.receiveMoneyForm.customer = parseInt(this.receiveMoneyForm.customer)
           this.receiveMoneyForm.operator = sessionStorage.getItem("name")
           this.receiveMoneyForm.state = null
-          this.receiveMoneyForm.receiveMoneyTransferList.forEach((item) => {
+          this.receiveMoneyForm.transferList.forEach((item) => {
             item.id = null
             item.bankAccountId = parseInt(item.bankAccountId)
             item.amount = Number(item.amount)
           })
           this.receiveMoneyForm.totalAmount = 0
-          for (let receiveMoneyTransfer in this.receiveMoneyForm.receiveMoneyTransferList) {
+          for (let receiveMoneyTransfer in this.receiveMoneyForm.transferList) {
             this.receiveMoneyForm.totalAmount += receiveMoneyTransfer.amount
           }
           let user = {
@@ -198,7 +196,7 @@ export default {
             role : sessionStorage.getItem("role"),
             password : null
           }
-          createReceiveMoney({ params: {userVO : user, receiveMoneySheetVO : this.receiveMoneyForm} }).then(_res => {
+          createReceiveMoney(this.receiveMoneyForm).then(_res => {
             if (_res.msg === 'Success') {
               this.$message.success('创建成功！')
               this.dialogVisible = false
@@ -210,12 +208,12 @@ export default {
       })
     },
     addBankAccount() {
-      this.receiveMoneyForm.receiveMoneyTransferList.push({})
+      this.receiveMoneyForm.transferList.push({})
     },
     removeBankAccount(item) {
-      let index = this.receiveMoneyForm.receiveMoneyTransferList.indexOf(item)
+      let index = this.receiveMoneyForm.transferList.indexOf(item)
       if (index !== -1) {
-        this.receiveMoneyForm.receiveMoneyTransferList.splice(index, 1)
+        this.receiveMoneyForm.transferList.splice(index, 1)
       }
     }
   }

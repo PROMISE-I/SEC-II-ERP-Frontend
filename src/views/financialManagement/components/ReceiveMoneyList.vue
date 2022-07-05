@@ -46,7 +46,7 @@
         <div v-if="showAll[index]" style="margin-top: 15px">
           <div style="margin-bottom: 15px"><strong>转账清单列表:</strong></div>
           <el-table
-              :data="item.receiveMoneyTransferList"
+              :data="item.transferList"
               stripe
               style="width: 100%"
               :header-cell-style="{'text-align':'center'}"
@@ -77,6 +77,8 @@ import {
   firstApprovalReceiveMoney,
   secondApprovalReceiveMoney
 } from "@/network/financialManagement";
+import { findBankAccountById } from "@/network/accountManagement";
+// TODO: 显示账户名称而不是账户 id
 
 export default {
   name: "ReceiveMoneyList",

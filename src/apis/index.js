@@ -94,7 +94,7 @@ const RECEIVE_MONEY_FIRST_APPROVAL = '/api/receiveMoney/first-approval';
 const RECEIVE_MONEY_SECOND_APPROVAL = '/api/receiveMoney/second-approval';
 
 // 付款单
-const PAY_MONEY_ALL = '/'; // TODO: TBD
+const PAY_MONEY_ALL = '/api/payMoney/find-all-sheets';
 const PAY_MONEY_FIND_BY_STATE = '/api/payMoney/sheet-show';
 const PAY_MONEY_CREATE = '/api/payMoney/sheet-make';
 const PAY_MONEY_FIRST_APPROVAL = '/api/payMoney/first-approval';
