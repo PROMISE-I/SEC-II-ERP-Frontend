@@ -71,7 +71,7 @@
   </Layout>
 </template>
 
-<!-- TODO 需要更改 api 接口，加入模糊查找的功能，完善剩下的部分 -->
+<!-- TODO：模糊查找，页面美化 -->
 
 <script>
 import Layout from "@/components/content/Layout";
@@ -123,9 +123,9 @@ export default {
               this.$message.success('创建成功!')
               this.dialogVisible = false
               this.resetForm()
-              this.customerList = []
+              this.bankAccountList = []
               getAllBankAccount({ params : {} }).then(_res => {
-                this.customerList = this.customerList.concat(_res.result)
+                this.bankAccountList = this.bankAccountList.concat(_res.result)
               })
             }
           })

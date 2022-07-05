@@ -87,7 +87,7 @@ const ATTENDANCE_CLOCK_IN = '/api/attendance/clockIn';
 const ATTENDANCE_CHECK = '/api/attendance/check';
 
 // 收款单
-const RECEIVE_MONEY_ALL = '/'; // TODO: TBD
+const RECEIVE_MONEY_ALL = '/api/receiveMoney/find-all-sheets';
 const RECEIVE_MONEY_FIND_BY_STATE = '/api/receiveMoney/sheet-show';
 const RECEIVE_MONEY_CREATE = '/api/receiveMoney/sheet-make';
 const RECEIVE_MONEY_FIRST_APPROVAL = '/api/receiveMoney/first-approval';

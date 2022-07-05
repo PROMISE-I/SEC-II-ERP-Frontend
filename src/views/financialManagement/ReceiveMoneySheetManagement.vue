@@ -64,14 +64,14 @@
                 <el-option
                     v-for="item1 in bankAccountList"
                     :key="item1.id"
-                    :label="item1.id"
+                    :label="item1.name"
                     :value="item1.id">
                 </el-option>
               </el-select>
-              <el-input v-model="item.amount" style="width: 25%; margin-right: 5%" placeholder="请输入转账金额"></el-input>
+              <el-input v-model="item.amount" style="width: 30%; margin-right: 5%" placeholder="请输入转账金额"></el-input>
             </div>
             <div style="margin-top: 10px">
-              <el-input v-model="item.remark" style="width: 70%; margin-right: 10%" placeholder="请填写备注"></el-input>
+              <el-input v-model="item.remark" style="width: 75%; margin-right: 10%" placeholder="请填写备注"></el-input>
               <el-button type="text" size="small" @click="addBankAccount" v-if="index === receiveMoneyForm.receiveMoneyTransferList.length - 1">添加</el-button>
               <el-button type="text" size="small" @click.prevent="removeBankAccount(item)" v-if="index !== 0">删除</el-button>
             </div>
@@ -87,7 +87,7 @@
 
 <script>
 
-// TODO: sale-list 是从哪里导入进来的？submitForm 还没有完成
+// TODO
 
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
@@ -135,15 +135,15 @@ export default {
   },
   mounted() {
     this.getReceiveMoney()
-    getAllCustomer({ params : {type: 'SELLER' } }).then(_res => {
+    getAllCustomer({ params : { type: 'SELLER' } }).then(_res => {
       this.customers = _res.result
     })
-    getAllCustomer({ params : {type: 'SUPPLIER' } }).then(_res => {
+    getAllCustomer({ params : { type: 'SUPPLIER' } }).then(_res => {
       this.customers = this.customers.concat(_res.result)
     })
     getAllBankAccount({}).then(_res => {
       let res = _res.result
-      res.forEach(item => this.bankAccountList.push({ id: item.id }))
+      res.forEach(item => this.bankAccountList.push(item))
     })
   },
   methods: {
@@ -193,15 +193,20 @@ export default {
           for (let receiveMoneyTransfer in this.receiveMoneyForm.receiveMoneyTransferList) {
             this.receiveMoneyForm.totalAmount += receiveMoneyTransfer.amount
           }
-        }
-        createReceiveMoney(this.receiveMoneyForm).then(_res => {
-          if (_res.msg === 'Success') {
-            this.$message.success('创建成功！')
-            this.dialogVisible = false
-            this.resetForm()
-            this.getReceiveMoney()
+          let user = {
+            name : sessionStorage.getItem("name"),
+            role : sessionStorage.getItem("role"),
+            password : null
           }
-        })
+          createReceiveMoney({ params: {userVO : user, receiveMoneySheetVO : this.receiveMoneyForm} }).then(_res => {
+            if (_res.msg === 'Success') {
+              this.$message.success('创建成功！')
+              this.dialogVisible = false
+              this.resetForm()
+              this.getReceiveMoney()
+            }
+          })
+        }
       })
     },
     addBankAccount() {
