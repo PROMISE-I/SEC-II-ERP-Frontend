@@ -4,23 +4,18 @@
     <el-button type="primary" size="medium" @click="dialogVisible = true">新增账户</el-button>
     <div style="margin-top: 10px">
       <el-table
-          :data="customerList"
+          :data="bankAccountList"
           stripe
           style="width: 100%"
           :header-cell-style="{'text-align':'center'}"
           :cell-style="{'text-align':'center'}">
-        <el-table-column
-            prop="id"
-            label="id"
-            width="60">
-        </el-table-column>
         <el-table-column
             prop="name"
             label="名称"
             width="800">
         </el-table-column>
         <el-table-column
-            prop="balance"
+            prop="amount"
             label="金额"
             width="250">
         </el-table-column>
@@ -46,8 +41,8 @@
           <el-form-item label="名称: " prop="name">
             <el-input v-model="accountForm.name"></el-input>
           </el-form-item>
-          <el-form-item label="金额: " prop="balance">
-            <el-input v-model="accountForm.balance"></el-input>
+          <el-form-item label="金额: " prop="amount">
+            <el-input v-model="accountForm.amount"></el-input>
           </el-form-item>
         </el-form>
       </div>
@@ -106,18 +101,10 @@ export default {
   },
   async mounted() {
     await getAllBankAccount({ params : {} }).then(_res => {
-      this.customerList = this.customerList.concat(_res.result)
+      this.bankAccountList = this.bankAccountList.concat(_res.result)
     })
   },
   methods: {
-    addBankAccount() {
-      // TODO: 新增客户
-      alert('TODO: 新增客户')
-    },
-    editInfo(id) {
-      // TODO: 修改客户信息
-      alert(`TODO: 修改${id}客户信息`)
-    },
     handleClose(done) {
       this.$confirm('确认关闭？')
           .then(_ => {
@@ -130,7 +117,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.accountForm.id = null
-          this.accountForm.balance = parseInt(this.accountForm.balance)
+          this.accountForm.amount = parseInt(this.accountForm.amount)
           createBankAccount(this.accountForm).then(_res => {
             if (_res.msg === 'Success') {
               this.$message.success('创建成功!')
@@ -150,7 +137,7 @@ export default {
       this.editForm = {}
     },
     showEditDialog(id_){
-      findBankAccountById({params: { id: id_}}).then(_res => {
+      findBankAccountById({ params: { bankAccountId : id_ } }).then(_res => {
         if(_res.msg == 'Success'){
           let bankAccount = _res.result
           this.editForm = bankAccount
@@ -164,16 +151,14 @@ export default {
     updateForm(formName){
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.editForm.id = parseInt(this.editForm.id)
-
-          updateBankAccount(this.editForm).then(_res => {
+          updateBankAccount({ params: { bankAccountId : this.editForm.id, newBankAccountName : this.editForm.name } }).then(_res => {
             if (_res.msg === 'Success') {
               this.$message.success('修改成功!')
               this.editDialogVisible = false
               this.resetForm()
-              this.customerList = []
+              this.bankAccountList = []
               getAllBankAccount({ params : {} }).then(_res => {
-                this.customerList = this.customerList.concat(_res.result)
+                this.bankAccountList = this.bankAccountList.concat(_res.result)
               })
             }
           })
@@ -181,17 +166,14 @@ export default {
       })
     },
     deleteCustomer(){
-      deleteBankAccount({params: {id: this.editForm.id}}).then(_res => {
+      deleteBankAccount({ params: { bankAccountId: this.editForm.id } } ).then(_res => {
         if(_res.msg == 'Success'){
           this.$message.success('删除成功!')
           this.editDialogVisible = false
           this.resetForm()
-          this.customerList = []
-          getAllCustomer({ params : { type: 'SUPPLIER' } }).then(_res => {
-            this.customerList = this.customerList.concat(_res.result)
-          })
-          getAllCustomer({ params : { type: 'SELLER' } }).then(_res => {
-            this.customerList = this.customerList.concat(_res.result)
+          this.bankAccountList = []
+          getAllBankAccount({ params : {} }).then(_res => {
+            this.bankAccountList = this.bankAccountList.concat(_res.result)
           })
         }
       })

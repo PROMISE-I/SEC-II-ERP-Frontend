@@ -31,12 +31,12 @@ const WAREHOUSE_INPUTSHEET_APPROVE = '/api/warehouse/inputSheet/approve';
 const WAREHOUSE_DAILY_COUNT = '/api/warehouse/warehouse/counting';
 
 // 账户管理 / 银行账户管理
-const BANK_ACCOUNT_ALL = '/api/bankAccount/'; // TODO: TBD
+const BANK_ACCOUNT_ALL = '/api/bankAccount/findAllAccount'; // TODO: TBD
 const BANK_ACCOUNT_CREATE = '/api/bankAccount/add'; // 注意：别的地方一般都是 create ，只有这里是 add
 const BANK_ACCOUNT_DELETE = '/api/bankAccount/delete';
 const BANK_ACCOUNT_UPDATE = '/api/bankAccount/update';
 const BANK_ACCOUNT_FIND_BY_AMBIGUOUS_NAME = 'api/bankAccount/findByAmbiguousName';
-const BANK_ACCOUNT_FIND_BY_ID = 'api/bankAccount/findById';
+const BANK_ACCOUNT_FIND_BY_ID = 'api/bankAccount/findAccountById';
 
 // 销售管理
 // 进货管理
@@ -87,12 +87,14 @@ const ATTENDANCE_CLOCK_IN = '/api/attendance/clockIn';
 const ATTENDANCE_CHECK = '/api/attendance/check';
 
 // 收款单
+const RECEIVE_MONEY_ALL = '/'; // TODO: TBD
 const RECEIVE_MONEY_FIND_BY_STATE = '/api/receiveMoney/sheet-show';
 const RECEIVE_MONEY_CREATE = '/api/receiveMoney/sheet-make';
 const RECEIVE_MONEY_FIRST_APPROVAL = '/api/receiveMoney/first-approval';
 const RECEIVE_MONEY_SECOND_APPROVAL = '/api/receiveMoney/second-approval';
 
 // 付款单
+const PAY_MONEY_ALL = '/'; // TODO: TBD
 const PAY_MONEY_FIND_BY_STATE = '/api/payMoney/sheet-show';
 const PAY_MONEY_CREATE = '/api/payMoney/sheet-make';
 const PAY_MONEY_FIRST_APPROVAL = '/api/payMoney/first-approval';
@@ -106,13 +108,6 @@ module.exports = {
   AUTH,
   LOGIN,
   REGISTER,
-
-  BANK_ACCOUNT_ALL,
-  BANK_ACCOUNT_CREATE,
-  BANK_ACCOUNT_DELETE,
-  BANK_ACCOUNT_UPDATE,
-  BANK_ACCOUNT_FIND_BY_AMBIGUOUS_NAME,
-  BANK_ACCOUNT_FIND_BY_ID,
 
   COMMODITY_CLASSIFICATION_ALL,
   COMMODITY_CLASSIFICATION_CREATE,
@@ -163,6 +158,13 @@ module.exports = {
   CUSTOMER_UPDATE,
   CUSTOMER_DELETE,
 
+  BANK_ACCOUNT_ALL,
+  BANK_ACCOUNT_CREATE,
+  BANK_ACCOUNT_DELETE,
+  BANK_ACCOUNT_UPDATE,
+  BANK_ACCOUNT_FIND_BY_AMBIGUOUS_NAME,
+  BANK_ACCOUNT_FIND_BY_ID,
+
   STAFF_ALL,
   STAFF_CREATE,
   STAFF_DELETE,
@@ -175,11 +177,13 @@ module.exports = {
   ATTENDANCE_CLOCK_IN,
   ATTENDANCE_CHECK,
 
+  RECEIVE_MONEY_ALL,
   RECEIVE_MONEY_FIND_BY_STATE,
   RECEIVE_MONEY_CREATE,
   RECEIVE_MONEY_FIRST_APPROVAL,
   RECEIVE_MONEY_SECOND_APPROVAL,
 
+  PAY_MONEY_ALL,
   PAY_MONEY_FIND_BY_STATE,
   PAY_MONEY_CREATE,
   PAY_MONEY_FIRST_APPROVAL,
