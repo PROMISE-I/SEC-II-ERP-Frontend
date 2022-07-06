@@ -15,3 +15,5 @@ export const createPayMoney = config => request._post(testAPI.PAY_MONEY_CREATE, 
 export const firstApprovalPayMoney = config => request._get(testAPI.PAY_MONEY_FIRST_APPROVAL, config);
 export const secondApprovalPayMoney = config => request._get(testAPI.PAY_MONEY_SECOND_APPROVAL, config);
 
+// 经营历程表
+export const showOperateSheet = config => request._get(testAPI.OPERATE_SHEET_SHOW, config);

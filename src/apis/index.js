@@ -76,6 +76,7 @@ const STAFF_CREATE = '/api/staff/create';
 const STAFF_ALL = '/api/staff/findAll';
 const STAFF_UPDATE = '/api/staff/update';
 const STAFF_DELETE = '/api/staff/delete';
+const STAFF_FIND_BY_ID = '/api/staff/findById'
 
 // 岗位管理
 const POSITION_ALL = '/api/position/findAll';
@@ -100,6 +101,8 @@ const PAY_MONEY_CREATE = '/api/payMoney/sheet-make';
 const PAY_MONEY_FIRST_APPROVAL = '/api/payMoney/first-approval';
 const PAY_MONEY_SECOND_APPROVAL = '/api/payMoney/second-approval';
 
+// 查看经营历程表
+const OPERATE_SHEET_SHOW = '/api/operate-sheet/show';
 
 module.exports = {
   TEST_GET,
@@ -169,6 +172,7 @@ module.exports = {
   STAFF_CREATE,
   STAFF_DELETE,
   STAFF_UPDATE,
+  STAFF_FIND_BY_ID,
 
   POSITION_ALL,
   POSITION_FIND_BY_TITLE,
@@ -187,5 +191,7 @@ module.exports = {
   PAY_MONEY_FIND_BY_STATE,
   PAY_MONEY_CREATE,
   PAY_MONEY_FIRST_APPROVAL,
-  PAY_MONEY_SECOND_APPROVAL
+  PAY_MONEY_SECOND_APPROVAL,
+
+  OPERATE_SHEET_SHOW
 };

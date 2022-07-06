@@ -83,9 +83,6 @@
           <el-form-item label="职位: " prop="position">
             <el-input v-model="staffForm.position"></el-input>
           </el-form-item>
-          <el-form-item label="工资卡账户: " prop="balance">
-            <el-input v-model="staffForm.balance"></el-input>
-          </el-form-item>
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -97,12 +94,12 @@
                width="40%"
                :before-close="handleClose">
       <div style="width: 90%; margin: 0 auto">
-        <el-form :model="staffForm" label-width="100px" ref="staffForm" :rules="rules">
+        <el-form :model="editForm" label-width="100px" ref="editForm" :rules="rules">
           <el-form-item label="姓名: " prop="name">
-            <el-input v-model="staffForm.name"></el-input>
+            <el-input v-model="editForm.name"></el-input>
           </el-form-item>
           <el-form-item label="性别: " prop="gender">
-            <el-select v-model="staffForm.gender" placeholder="请选择性别">
+            <el-select v-model="editForm.gender" placeholder="请选择性别">
               <el-option
                   v-for="item in genderList" :key="item.id" :value="item">
                 {{ item }}
@@ -110,16 +107,13 @@
             </el-select>
           </el-form-item>
           <el-form-item label="出生日期: " prop="birthday">
-            <el-input v-model="staffForm.birthday"></el-input>
+            <el-input v-model="editForm.birthday"></el-input>
           </el-form-item>
           <el-form-item label="手机号: " prop="phone">
-            <el-input v-model="staffForm.phone"></el-input>
+            <el-input v-model="editForm.phone"></el-input>
           </el-form-item>
           <el-form-item label="职位: " prop="position">
-            <el-input v-model="staffForm.position"></el-input>
-          </el-form-item>
-          <el-form-item label="工资卡账户: " prop="balance">
-            <el-input v-model="staffForm.balance"></el-input>
+            <el-input v-model="editForm.position"></el-input>
           </el-form-item>
         </el-form>
       </div>
@@ -142,7 +136,8 @@ import {
   getAllStaff,
   createStaff,
   deleteStaff,
-  updateStaff
+  updateStaff,
+  findStaffById
 } from "@/network/staff"
 // TODO: findStaffById
 export default {
@@ -161,11 +156,11 @@ export default {
         birthday: '',
         phone: '',
         position: '',
-        balance: 0
+        balance: ''
       },
       editDialogVisible: false,
       editForm: {},
-      genderList: ['male', 'female'],
+      genderList: ['男', '女'],
     }
   },
   async mounted() {
@@ -185,8 +180,8 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.staffForm.id = null;
-          this.staffForm.balance = Number(this.staffForm.balance)
+          this.staffForm.id = null
+          this.staffForm.balance = 0
 
           createStaff(this.staffForm).then(_res => {
             if (_res.msg === 'Success') {
@@ -206,14 +201,13 @@ export default {
       this.staffForm = {}
       this.editForm = {}
     },
-    showEditDialog(id_){
-      // TODO: findStaffById
-      findStaffById({params: { id: id_ }}).then(_res => {
+    showEditDialog(id_) {
+      findStaffById({params: { staffId: id_ }}).then(_res => {
         if(_res.msg == 'Success'){
           let staff = _res.result
           this.editForm = staff
           this.editDialogVisible = true
-        }else {
+        } else {
           console.log('Something wrong!')
           alert('Something wrong!')
         }
@@ -222,8 +216,7 @@ export default {
     updateForm(formName){
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.staffForm.id = parseInt(this.staffForm.id);
-          this.staffForm.balance = Number(this.staffForm.balance)
+          this.editForm.id = parseInt(this.editForm.id)
 
           updateStaff(this.editForm).then(_res => {
             if (_res.msg === 'Success') {
@@ -239,7 +232,7 @@ export default {
         }
       })
     },
-    deleteStaff(){
+    deleteStaff() {
       deleteStaff({params: {id: this.editForm.id}}).then(_res => {
         if(_res.msg == 'Success'){
           this.$message.success('删除成功!')
