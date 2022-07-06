@@ -109,6 +109,12 @@ const SALARY_CREATE = '/api/salary/sheet-make';
 const SALARY_FIRST_APPROVAL = '/api/salary/first-approval';
 const SALARY_SECOND_APPROVAL = '/api/salary/second-approval';
 
+// 查看销售明细表
+const SALE_DETAIL_SHOW = '/api/sale/saleDetail-byRange';
+const SALE_DETAIL_FIND_BY_CONDITION = '/api/sale/saleDetail';
+const SALE_RETURN_DETAIL_SHOW = '/api/sale-returns/saleReturnsDetail-byRange';
+const SALE_RETURN_DETAIL_FIND_BY_CONDITION = '/api/sale-returns/saleReturnsDetail';
+
 // 查看经营历程表
 const OPERATE_SHEET_SHOW = '/api/operate-sheet/show';
 
@@ -207,6 +213,11 @@ module.exports = {
   SALARY_CREATE,
   SALARY_FIRST_APPROVAL,
   SALARY_SECOND_APPROVAL,
+
+  SALE_DETAIL_SHOW,
+  SALE_DETAIL_FIND_BY_CONDITION,
+  SALE_RETURN_DETAIL_SHOW,
+  SALE_RETURN_DETAIL_FIND_BY_CONDITION,
 
   OPERATE_SHEET_SHOW
 };
