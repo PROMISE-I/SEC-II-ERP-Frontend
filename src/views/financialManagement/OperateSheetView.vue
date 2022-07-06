@@ -18,22 +18,22 @@
           <span>{{finalIncome}}</span>
         </div>
         <div class="mt15">
-          <span><strong>折让总额合计为: </strong></span>
+          <span><strong> 折让总额合计为: </strong></span>
           <span>{{discountAmount}}</span>
         </div>
         <div class="mt15">
-          <span><strong>总支出合计为: </strong></span>
+          <span><strong> 总支出合计为: </strong></span>
           <span>{{cost}}</span>
         </div>
         <div class="mt15">
-          <span><strong>利润合计为: </strong></span>
+          <span><strong> 利润合计为: </strong></span>
           <span>{{profit}}</span>
         </div>
       </div>
     </div>
   </Layout>
 </template>
-<!-- TODO -->
+<!-- TODO：页面美化 -->
 <script>
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";

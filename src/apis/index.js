@@ -101,6 +101,14 @@ const PAY_MONEY_CREATE = '/api/payMoney/sheet-make';
 const PAY_MONEY_FIRST_APPROVAL = '/api/payMoney/first-approval';
 const PAY_MONEY_SECOND_APPROVAL = '/api/payMoney/second-approval';
 
+// 工资单
+const SALARY_ALL = '/api/salary/get-all-salary-sheets';
+const SALARY_FIND_BY_STATE = '/api/salary/sheet-show';
+const SALARY_AMOUNT_GET_BY_ID = '/api/salary/get-salary';
+const SALARY_CREATE = '/api/salary/sheet-make';
+const SALARY_FIRST_APPROVAL = '/api/salary/first-approval';
+const SALARY_SECOND_APPROVAL = '/api/salary/second-approval';
+
 // 查看经营历程表
 const OPERATE_SHEET_SHOW = '/api/operate-sheet/show';
 
@@ -192,6 +200,13 @@ module.exports = {
   PAY_MONEY_CREATE,
   PAY_MONEY_FIRST_APPROVAL,
   PAY_MONEY_SECOND_APPROVAL,
+
+  SALARY_ALL,
+  SALARY_FIND_BY_STATE,
+  SALARY_AMOUNT_GET_BY_ID,
+  SALARY_CREATE,
+  SALARY_FIRST_APPROVAL,
+  SALARY_SECOND_APPROVAL,
 
   OPERATE_SHEET_SHOW
 };

@@ -86,9 +86,6 @@
 </template>
 
 <script>
-
-// TODO
-
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
 import ReceiveMoneyList from "@/views/financialManagement/components/ReceiveMoneyList";
