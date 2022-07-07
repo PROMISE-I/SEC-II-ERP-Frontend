@@ -127,7 +127,7 @@
   </Layout>
 </template>
 
-<!-- TODO -->
+<!-- TODO：加入输入格式检查，页面美化 -->
 
 <script>
 import Layout from "@/components/content/Layout";
@@ -139,7 +139,6 @@ import {
   updateStaff,
   findStaffById
 } from "@/network/staff"
-// TODO: findStaffById
 export default {
   name: "StaffManagement",
   components: {

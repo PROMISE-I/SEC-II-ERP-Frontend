@@ -1,7 +1,6 @@
 <template>
   <Layout>
     <Title title="岗位管理"></Title>
-<!--    <el-button type="primary" size="medium" @click="dialogVisible = true">新增客户</el-button>-->
     <div style="margin-top: 10px">
       <el-table
           :data="positionList"
@@ -11,18 +10,23 @@
           :cell-style="{'text-align':'center'}">
         <el-table-column
             prop="title"
-            label="名称"
-            width="70">
+            label="Title"
+            width="160">
+        </el-table-column>
+        <el-table-column
+            prop="name"
+            label="岗位名称"
+            width="160">
         </el-table-column>
         <el-table-column
             prop="baseSalary"
-            label="基本工资"
-            width="100">
+            label="基本工资（元）"
+            width="130">
         </el-table-column>
         <el-table-column
             prop="specialSalary"
-            label="岗位工资"
-            width="100">
+            label="岗位工资（元）"
+            width="130">
         </el-table-column>
         <el-table-column
             prop="level"
@@ -30,25 +34,25 @@
             width="100">
         </el-table-column>
         <el-table-column
-            prop="salaryCalculationMethod"
+            prop="salaryCalculateMethod"
             label="薪资计算方式"
-            width="300">
+            width="230">
         </el-table-column>
         <el-table-column
-            prop="salaryPayMethod"
+            prop="salaryPaymentMethod"
             label="薪资发放方式"
-            width="300">
+            width="230">
         </el-table-column>
         <el-table-column
             prop="tax"
             label="扣税信息"
-            width="100">
+            width="200">
         </el-table-column>
         <el-table-column
             label="操作">
           <template slot-scope="scope">
             <el-button
-                @click="showEditDialog(scope.row.id)"
+                @click="showEditDialog(scope.row.title)"
                 type="text"
                 size="small">
               编辑
@@ -63,9 +67,8 @@
                :before-close="handleClose">
       <div style="width: 90%; margin: 0 auto">
         <el-form :model="editForm" label-width="100px" ref="editForm" :rules="rules">
-          <el-form-item label="名称: " prop="title">
-            <el-input v-model="editForm.title"></el-input>
-            <!-- TODO: 名称不可修改 -->
+          <el-form-item label="Title: " prop="title">
+            <el-input v-model="editForm.title" disabled></el-input>
           </el-form-item>
           <el-form-item label="基本工资: " prop="baseSalary">
             <el-input v-model="editForm.baseSalary"></el-input>
@@ -76,11 +79,11 @@
           <el-form-item label="岗位级别: " prop="level">
             <el-input v-model="editForm.level"></el-input>
           </el-form-item>
-          <el-form-item label="薪资计算方式: " prop="salaryCalculationMethod">
-            <el-input v-model="editForm.salaryCalculationMethod"></el-input>
+          <el-form-item label="薪资计算方式: " prop="salaryCalculateMethod">
+            <el-input v-model="editForm.salaryCalculateMethod" disabled></el-input>
           </el-form-item>
-          <el-form-item label="薪资发放方式: " prop="salaryPayMethod">
-            <el-input v-model="editForm.salaryPayMethod"></el-input>
+          <el-form-item label="薪资发放方式: " prop="salaryPaymentMethod">
+            <el-input v-model="editForm.salaryPaymentMethod" disabled></el-input>
           </el-form-item>
           <el-form-item label="扣税信息: " prop="tax">
             <el-input v-model="editForm.tax"></el-input>
@@ -93,12 +96,12 @@
     </el-dialog>
   </Layout>
 </template>
-<!-- TODO -->
 <script>
+// TODO：页面美化，等这个接口弄好了之后重新改过来，调试随机抖动的问题
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
 import {
-  getAllPosition,
+  getAllPosition, // 获取所有 Position 的 Title
   updatePosition,
   findPositionByTitle
 } from "../../network/staff"
@@ -110,18 +113,66 @@ export default {
   },
   data() {
     return {
+      positionTitleList: [],
       positionList: [],
       diaLogVisible: false,
       editForm: {},
-      editDialogVisible: false
+      editDialogVisible: false,
+      rules: {
+        baseSalary: [
+          { required: true, message: '请输入基本工资', trigger: 'change' }
+        ],
+        specialSalary: [
+          { required: true, message: '请输入岗位工资', trigger: 'change' }
+        ],
+        level: [
+          { required: true, message: '请输入岗位级别', trigger: 'change' }
+        ],
+        tax: [
+          { required: true, message: '请输入扣税信息', trigger: 'change' }
+        ]
+      }
     }
   },
   async mounted() {
-    await getAllPosition({ params : {} }).then(_res => {
-      this.positionList = this.positionList.concat(_res.result)
-    })
+    this.positionTitleList = ['FINANCIAL_STAFF', 'GM', 'HR', 'INVENTORY_MANAGER', 'SALE_MANAGER', 'SALE_STAFF']
+    // await getAllPosition({ params : {} }).then(_res => {
+    //   assert(this.positionTitleList.length === _res.result.length, 'Wrong positionTitleList!')
+    // })
+    this.getPositionInfo()
   },
   methods: {
+    getPositionInfo() {
+      this.positionList = []
+      for (let title of this.positionTitleList) {
+        findPositionByTitle({ params: { title: title } }).then(_res => {
+          let info = _res.result
+          info.name = this.getName(info.title)
+          this.positionList.push(info)
+        })
+      }
+      this.positionList.sort(function (a, b) {
+        let ta = a.title, tb = b.title
+        if (ta < tb) {
+          return -1
+        } else if (ta > tb) {
+          return 1
+        } else {
+          return 0
+        }
+      })
+    },
+    getName(title) {
+      const nameMap = {
+        INVENTORY_MANAGER: '库存管理人员',
+        SALE_STAFF: '进货销售人员',
+        SALE_MANAGER: '销售经理',
+        FINANCIAL_STAFF: '财务人员',
+        HR: '人力资源人员',
+        GM: '总经理'
+      }
+      return nameMap[title]
+    },
     handleClose(done) {
       this.$confirm('确认关闭？')
           .then(_ => {
@@ -134,7 +185,7 @@ export default {
       this.editForm = {}
     },
     showEditDialog(title_){
-      findPositionByTitle({params: { title: title_}}).then(_res => {
+      findPositionByTitle({params: { title: title_ } }).then(_res => {
         if(_res.msg == 'Success'){
           let position = _res.result
           this.editForm = position
@@ -158,10 +209,7 @@ export default {
               this.$message.success('修改成功!')
               this.editDialogVisible = false
               this.resetForm()
-              this.positionList = []
-              getAllPosition({params: {}}).then(_res => {
-                this.positionList = this.positionList.concat(_res.result)
-              })
+              this.getPositionInfo()
             }
           })
         }

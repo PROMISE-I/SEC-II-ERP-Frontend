@@ -86,7 +86,6 @@
 </template>
 
 <script>
-// TODO: 收款单的部分调试完成了之后复制一份过来
 import PayMoneyList from "@/views/financialManagement/components/PayMoneyList";
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";

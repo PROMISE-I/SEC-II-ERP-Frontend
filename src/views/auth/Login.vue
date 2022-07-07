@@ -44,6 +44,10 @@ export default {
             return;
           } else {
             sessionStorage.setItem("token", token);
+            // console.log(_res.result)
+            let staffId = _res.result.staffId
+            // console.log(staffId)
+            sessionStorage.setItem("staffId", staffId) // 获取 staffId 存入 sessionStorage，用于打卡
             let config = {
               params: {
                 token: token

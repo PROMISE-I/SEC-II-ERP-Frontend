@@ -7,3 +7,11 @@ export const formatDate = gmt => {
   let s = date.getSeconds(), ss = ':' +(s < 10 ? '0' + s : s)
   return date.getFullYear() + mm + dd + hh + ii + ss
 }
+
+export const sleep = ms => {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+export async function oneTick(ms) {
+  await sleep(ms)
+}

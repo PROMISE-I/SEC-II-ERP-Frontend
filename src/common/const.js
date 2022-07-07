@@ -117,11 +117,11 @@ export const PATH = {
   // HR 人力资源人员
   STAFF_MANAGEMENT: {
     path: '/staffManagement',
-    requiresAuth: [ROLE.HR, ROLE.ADMIN]
+    requiresAuth: [ROLE.HR, ROLE.GM, ROLE.ADMIN]
   },
   POSITION_MANAGEMENT: {
     path: '/positionManagement',
-    requiresAuth: [ROLE.HR, ROLE.ADMIN]
+    requiresAuth: [ROLE.HR, ROLE.GM, ROLE.ADMIN]
   },
   SALARY_SHEET_MANAGEMENT: {
     path: '/salarySheetManagement',

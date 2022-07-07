@@ -31,7 +31,7 @@ const WAREHOUSE_INPUTSHEET_APPROVE = '/api/warehouse/inputSheet/approve';
 const WAREHOUSE_DAILY_COUNT = '/api/warehouse/warehouse/counting';
 
 // 账户管理 / 银行账户管理
-const BANK_ACCOUNT_ALL = '/api/bankAccount/findAllAccount'; // TODO: TBD
+const BANK_ACCOUNT_ALL = '/api/bankAccount/findAllAccount';
 const BANK_ACCOUNT_CREATE = '/api/bankAccount/add'; // 注意：别的地方一般都是 create ，只有这里是 add
 const BANK_ACCOUNT_DELETE = '/api/bankAccount/delete';
 const BANK_ACCOUNT_UPDATE = '/api/bankAccount/update';
