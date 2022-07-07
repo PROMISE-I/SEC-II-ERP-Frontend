@@ -142,13 +142,7 @@
             <i class="el-icon-receiving"></i>
             <span slot="title">付款单管理</span>
           </el-menu-item>
-          <el-menu-item
-              :index="PATH.SALARY_SHEET_MANAGEMENT.path"
-              v-if="permit(PATH.SALARY_SHEET_MANAGEMENT.requiresAuth)"
-          >
-            <i class="el-icon-receiving"></i>
-            <span slot="title">工资单管理</span>
-          </el-menu-item>
+
           <el-menu-item
               :index="PATH.SALE_DETAIL_VIEW.path"
               v-if="permit(PATH.SALE_DETAIL_VIEW.requiresAuth)"
@@ -191,6 +185,13 @@
           >
             <i class="el-icon-receiving"></i>
             <span slot="title">岗位管理</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.SALARY_SHEET_MANAGEMENT.path"
+              v-if="permit(PATH.SALARY_SHEET_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">工资单管理</span>
           </el-menu-item>
         </el-submenu>
 

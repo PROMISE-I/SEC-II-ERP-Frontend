@@ -77,12 +77,12 @@
 <script>
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
-import SalaryList from "@/views/financialManagement/components/SalaryList";
+import SalaryList from "@/views/staff/components/SalaryList";
 import {
   getAllSalary,
   createSalary,
   getSalaryAmountByStaffId
-} from "@/network/financialManagement";
+} from "@/network/staff";
 import { getAllStaff } from "@/network/staff";
 import { getAllBankAccount } from "@/network/accountManagement";
 

@@ -100,10 +100,7 @@ export const PATH = {
     path: '/payMoneySheetManagement',
     requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
   },
-  SALARY_SHEET_MANAGEMENT: {
-    path: '/salarySheetManagement',
-    requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
-  }, // TODO: TBD
+
   SALE_DETAIL_VIEW: {
     path: '/saleDetailView',
     requiresAuth: [ROLE.FINANCIAL_STAFF, ROLE.GM, ROLE.ADMIN]
@@ -125,6 +122,10 @@ export const PATH = {
   POSITION_MANAGEMENT: {
     path: '/positionManagement',
     requiresAuth: [ROLE.HR, ROLE.ADMIN]
+  },
+  SALARY_SHEET_MANAGEMENT: {
+    path: '/salarySheetManagement',
+    requiresAuth: [ROLE.HR, ROLE.GM, ROLE.ADMIN]
   },
 
   ATTENDANCE: {

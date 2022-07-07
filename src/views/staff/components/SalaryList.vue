@@ -49,7 +49,7 @@
 import {
   firstApprovalSalary,
   secondApprovalSalary
-} from "@/network/financialManagement";
+} from "@/network/staff";
 
 export default {
   name: "SalaryList",
@@ -70,7 +70,7 @@ export default {
       this.$set(this.showAll, index, !this.showAll[index])
     },
     authorization() {
-      if (this.type === 1 && sessionStorage.getItem('role') === 'FINANCIAL_STAFF') {
+      if (this.type === 1 && sessionStorage.getItem('role') === 'HR') {
         return 1;
       } else if (this.type === 2 && sessionStorage.getItem('role') === 'GM') {
         return 2;

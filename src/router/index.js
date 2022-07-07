@@ -29,7 +29,7 @@ const Approval = () => import("../views/approval/Approval");
 const BankAccountManagement = () => import("../views/accountManagement/BankAccountManagement");
 const ReceiveMoneySheetManagement = () => import("../views/financialManagement/ReceiveMoneySheetManagement");
 const PayMoneySheetManagement = () => import("../views/financialManagement/PayMoneySheetManagement");
-const SalarySheetManagement = () => import("../views/financialManagement/SalarySheetManagement");
+const SalarySheetManagement = () => import("../views/staff/SalarySheetManagement");
 const SaleDetailView = () => import("../views/financialManagement/SaleDetailView");
 const BusinessHistoryView = () => import("../views/financialManagement/BusinessHistoryView");
 const OperateSheetView = () => import("../views/financialManagement/OperateSheetView");
@@ -172,11 +172,7 @@ const routes = [
     component: PayMoneySheetManagement,
     meta: { requiresAuth: PATH.PAY_MONEY_SHEET_MANAGEMENT.requiresAuth }
   },
-  {
-    path: PATH.SALARY_SHEET_MANAGEMENT.path,
-    component: SalarySheetManagement,
-    meta: { requiresAuth: PATH.SALARY_SHEET_MANAGEMENT.requiresAuth }
-  },
+
   {
     path: PATH.SALE_DETAIL_VIEW.path,
     component: SaleDetailView,
@@ -202,6 +198,11 @@ const routes = [
     path: PATH.POSITION_MANAGEMENT.path,
     component: PositionManagement,
     meta: { requiresAuth: PATH.POSITION_MANAGEMENT.requiresAuth }
+  },
+  {
+    path: PATH.SALARY_SHEET_MANAGEMENT.path,
+    component: SalarySheetManagement,
+    meta: { requiresAuth: PATH.SALARY_SHEET_MANAGEMENT.requiresAuth }
   },
   // 打卡
   {
