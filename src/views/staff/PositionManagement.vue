@@ -137,30 +137,37 @@ export default {
   async mounted() {
     this.positionTitleList = ['FINANCIAL_STAFF', 'GM', 'HR', 'INVENTORY_MANAGER', 'SALE_MANAGER', 'SALE_STAFF']
     // await getAllPosition({ params : {} }).then(_res => {
-    //   assert(this.positionTitleList.length === _res.result.length, 'Wrong positionTitleList!')
+    //   this.positionList = _res.result
     // })
     this.getPositionInfo()
   },
   methods: {
     getPositionInfo() {
       this.positionList = []
-      for (let title of this.positionTitleList) {
-        findPositionByTitle({ params: { title: title } }).then(_res => {
-          let info = _res.result
-          info.name = this.getName(info.title)
-          this.positionList.push(info)
+      getAllPosition({}).then(_res => {
+        let rawPositionList = _res.result
+        rawPositionList.forEach(item => {
+          item.name = this.getName(item.title)
+          this.positionList.push(item)
         })
-      }
-      this.positionList.sort(function (a, b) {
-        let ta = a.title, tb = b.title
-        if (ta < tb) {
-          return -1
-        } else if (ta > tb) {
-          return 1
-        } else {
-          return 0
-        }
       })
+      // for (let title of this.positionTitleList) {
+      //   findPositionByTitle({ params: { title: title } }).then(_res => {
+      //     let info = _res.result
+      //     info.name = this.getName(info.title)
+      //     this.positionList.push(info)
+      //   })
+      // }
+      // this.positionList.sort(function (a, b) {
+      //   let ta = a.title, tb = b.title
+      //   if (ta < tb) {
+      //     return -1
+      //   } else if (ta > tb) {
+      //     return 1
+      //   } else {
+      //     return 0
+      //   }
+      // })
     },
     getName(title) {
       const nameMap = {
