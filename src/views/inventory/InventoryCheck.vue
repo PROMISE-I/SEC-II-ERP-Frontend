@@ -123,8 +123,8 @@ export default {
     exportAsExcel(id, title) {
       //TODO 导出Excel
       /* generate workbook object from table */
-    var fix = document.querySelector('.el-table__fixed');
-    var wb;
+    let fix = document.querySelector('.el-table__fixed');
+    let wb;
     if (fix) {
       wb = this.$XLSX.utils.table_to_book(document.getElementById(id).removeChild(fix));
       document.getElementById(id).appendChild(fix);
@@ -132,7 +132,7 @@ export default {
       wb = this.$XLSX.utils.table_to_book(document.getElementById(id));
     }
     /* get binary string as output */
-    var wbout = this.$XLSX.write(wb, {
+    let wbout = this.$XLSX.write(wb, {
       bookType: 'xlsx',
       bookSST: true,
       type: 'array'
