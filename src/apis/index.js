@@ -121,6 +121,14 @@ const BUSINESS_HISTORY_SHOW = '/api/business-history/show';
 // 查看经营历程表
 const OPERATE_SHEET_SHOW = '/api/operate-sheet/show';
 
+// 年终奖
+const YEAR_END_BONUS_ALL = '/api/year-end-awards/find-all';
+const YEAR_END_BONUS_CREATE = '/api/year-end-awards/awards-make';
+const YEAR_END_BONUS_UPDATE = '/api/year-end-awards/awards-update';
+const YEAR_END_BONUS_FIND_BY_STAFF_ID = '/api/year-end-awards/find-by-staffId-year';
+const STAFF_ALL_EXCEPT_GM = '/api/staff/findAllExceptGM';
+const SALARY_FIND_TOTAL_AMOUNT_BY_STAFF_ID = '/api/salary/get-total-amount';
+
 module.exports = {
   TEST_GET,
   TEST_POST,
@@ -224,5 +232,12 @@ module.exports = {
 
   BUSINESS_HISTORY_SHOW,
 
-  OPERATE_SHEET_SHOW
+  OPERATE_SHEET_SHOW,
+
+  YEAR_END_BONUS_ALL,
+  YEAR_END_BONUS_CREATE,
+  YEAR_END_BONUS_UPDATE,
+  YEAR_END_BONUS_FIND_BY_STAFF_ID,
+  STAFF_ALL_EXCEPT_GM,
+  SALARY_FIND_TOTAL_AMOUNT_BY_STAFF_ID
 };

@@ -146,6 +146,7 @@ export default {
         this.pendingLevel2List = this.saleReturnList.filter(item => item.state === '待二级审批')
         this.successList = this.saleReturnList.filter(item => item.state === '审批完成')
         this.failureList = this.saleReturnList.filter(item => item.state === '审批失败')
+        console.log(this.saleReturnList)
       })
     },
     handleClose(done) {

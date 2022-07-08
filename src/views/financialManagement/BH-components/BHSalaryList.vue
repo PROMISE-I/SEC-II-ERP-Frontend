@@ -4,7 +4,7 @@
 <!--TODO-->
 <script>
 export default {
-  name: "BH-SaleReturnList.vue"
+  name: "BHSalaryList"
 }
 </script>
 

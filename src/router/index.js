@@ -36,6 +36,8 @@ const OperateSheetView = () => import("../views/financialManagement/OperateSheet
 const StaffManagement = () => import("../views/staff/StaffManagement")
 const PositionManagement = () => import("../views/staff/PositionManagement")
 const Attendance = () => import("../views/attendance/Attendance")
+const YearEndBonusManagement = () => import("../views/yearEndBonus/YearEndBonusManagement")
+const PromotionManagement = () => import("../views/promotion/promotionManagement")
 
 Vue.use(VueRouter);
 
@@ -209,6 +211,19 @@ const routes = [
     path: PATH.ATTENDANCE.path,
     component: Attendance,
     meta: { requiresAuth: PATH.ATTENDANCE.requiresAuth }
+  },
+  // 总经理事务
+  // 年终奖制定
+  {
+    path: PATH.YEAR_END_BONUS_MANAGEMENT.path,
+    component: YearEndBonusManagement,
+    meta: { requiresAuth: PATH.YEAR_END_BONUS_MANAGEMENT.requiresAuth }
+  },
+  // 促销策略制定
+  {
+    path: PATH.PROMOTION_MANAGEMENT.path,
+    component: PromotionManagement,
+    meta: { requiresAuth: PATH.PROMOTION_MANAGEMENT.requiresAuth }
   },
   // 审批
   {

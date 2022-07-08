@@ -4,7 +4,7 @@
 <!--TODO-->
 <script>
 export default {
-  name: "BH-ReceiveMoneyList"
+  name: "BHReceiveMoneyList"
 }
 </script>
 

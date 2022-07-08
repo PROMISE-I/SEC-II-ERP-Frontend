@@ -40,7 +40,7 @@
             <span><strong>操作员: </strong>{{item.operator}}</span>
           </el-col>
           <el-col :span="6">
-            <span><strong>总额合计: </strong>{{item.totalAmount}}(元)</span>
+            <span><strong>总额合计: </strong>{{item.finalAmount}}(元)</span>
           </el-col>
         </el-row>
         <el-row style="margin-top: 15px">
