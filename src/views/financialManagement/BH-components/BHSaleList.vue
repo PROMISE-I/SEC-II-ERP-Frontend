@@ -6,7 +6,6 @@
         <el-row>
           <el-col :span="18">
             <span><strong>id: </strong>{{item.id}}</span>
-<!--            TODO: 确定这个偏移 margin-left 的长度-->
             <el-popconfirm title="确认使用红冲功能吗？">
               <el-button v-if="isGM() === false" style="margin-left: 10px"
                          type="danger" size="mini" @click="reverseCreate(item.id)" slot="reference">
@@ -274,8 +273,50 @@ export default {
       this.saleForm = form
       this.dialogVisible = true
     },
-    exportAsExcel(fileName) {
+    exportAsExcel() {
       // TODO ：导出 Excel 功能
+      let curTime = new Date().getTime()
+      import('@/vendor/Export2Excel').then(excel => {
+        const tHeader = ['id', '供应商id', '业务员', '操作员', '折让前总额', '折扣', '使用代金券总和', '折让后总额', '备注']
+        const filterVal = ['id', 'supplier', 'salesman', 'operator', 'rawTotalAmount', 'discount', 'voucherAmount', 'totalAmount', 'remark']
+        const list = this.list
+        const data = this.formatJson(filterVal, list)
+        const filename = 'business-history-sale' + curTime
+        excel.export_json_to_excel({
+          header: tHeader,
+          data,
+          filename: filename,
+          autoWidth: true,
+          bookType: 'xlsx'
+        })
+      })
+      let contentList = []
+      for (let item of this.list) {
+        for (let content of item.saleSheetContent) {
+          let tmp = content
+          tmp.id = item.id
+          contentList.push(tmp)
+        }
+      }
+      import('@/vendor/Export2Excel').then(excel => {
+        const tHeader = ['id', '商品id', '数量', '单价', '备注']
+        const filterVal = ['id', 'pid', 'quantity', 'unitPrice', 'remark']
+        const list = contentList
+        const data = this.formatJson(filterVal, list)
+        const filename = 'business-history-sale-content' + curTime
+        excel.export_json_to_excel({
+          header: tHeader,
+          data,
+          filename: filename,
+          autoWidth: true,
+          bookType: 'xlsx'
+        })
+      })
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => {
+          return v[j]
+      }))
     },
     resetForm() {
       this.dialogVisible = false

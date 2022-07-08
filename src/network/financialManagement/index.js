@@ -22,7 +22,7 @@ export const getSaleReturnDetailByRange = config => request._get(testAPI.SALE_RE
 export const findSaleReturnDetailByCondition = config => request._post(testAPI.SALE_RETURN_DETAIL_FIND_BY_CONDITION, config);
 
 // 经营历程表
-export const showBusinessHistory = config => request._get(testAPI.BUSINESS_HISTORY_SHOW, config);
+export const showBusinessHistory = config => request._post(testAPI.BUSINESS_HISTORY_SHOW, config);
 
 // 经营历程表
 export const showOperateSheet = config => request._get(testAPI.OPERATE_SHEET_SHOW, config);

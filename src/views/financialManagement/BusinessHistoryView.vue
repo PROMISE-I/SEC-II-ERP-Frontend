@@ -22,7 +22,7 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="客户" prop="customer">
+        <el-form-item v-if="conditionForm.sheetType === 'sale' || conditionForm.sheetType === 'sale-returns'" label="客户" prop="customer">
           <el-select v-model="conditionForm.customer" placeholder="请选择客户">
             <el-option
                 v-for="item in customerList"
@@ -32,7 +32,7 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="操作员" prop="operator">
+        <el-form-item v-if="conditionForm.sheetType === 'sale' || conditionForm.sheetType === 'sale-returns'" label="业务员" prop="operator">
           <el-select v-model="conditionForm.operator" placeholder="请选择业务员">
             <el-option
                 v-for="item in operatorList"
@@ -143,10 +143,10 @@ export default {
           { required: true, message: '请选择单据类型', trigger: 'change' }
         ],
         customer: [
-          { required: true, message: '请选择一个客户', trigger: 'change' }
+          { required: false, message: '请选择一个客户', trigger: 'change' }
         ],
         operator: [
-          { required: true, message: '请选择一个操作员', trigger: 'change' }
+          { required: false, message: '请选择一个操作员', trigger: 'change' }
         ]
       }
     }
@@ -182,24 +182,26 @@ export default {
   },
   methods: {
     getData() {
-      const config = {
-        params: {
-          begin: this.beginDate,
-          end: this.endDate
-        }
+      console.log(this.conditionForm)
+      const condition = {
+        begin: this.beginDate,
+        end: this.endDate,
+        operator: this.conditionForm.operator,
+        customer: parseInt(this.conditionForm.customer),
+        type: this.conditionForm.sheetType
       }
-      console.log(config)
       this.sheetContentList = []
-      let hasData = false
-      showBusinessHistory(config).then(_res => {
+      showBusinessHistory(condition).then(_res => {
         let allSheets = _res.result
         allSheets.forEach(sheet => {
+          console.log(sheet)
           if (this.conditionForm.sheetType === sheet.type) {
             this.sheetContentList.push(sheet.sheetObject)
-            hasData = true
           }
         })
         this.sheetCount = this.sheetContentList.length
+        if (this.sheetCount === 0) this.$message.info('未查询到相关数据！')
+        else this.$message.success('查询成功！')
       })
       console.log(this.sheetContentList)
     },
