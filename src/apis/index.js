@@ -116,6 +116,9 @@ const SALE_RETURN_DETAIL_SHOW = '/api/sale-returns/saleReturnsDetail-byRange';
 const SALE_RETURN_DETAIL_FIND_BY_CONDITION = '/api/sale-returns/saleReturnsDetail';
 
 // 查看经营历程表
+const BUSINESS_HISTORY_SHOW = '/api/business-history/show';
+
+// 查看经营历程表
 const OPERATE_SHEET_SHOW = '/api/operate-sheet/show';
 
 module.exports = {
@@ -218,6 +221,8 @@ module.exports = {
   SALE_DETAIL_FIND_BY_CONDITION,
   SALE_RETURN_DETAIL_SHOW,
   SALE_RETURN_DETAIL_FIND_BY_CONDITION,
+
+  BUSINESS_HISTORY_SHOW,
 
   OPERATE_SHEET_SHOW
 };

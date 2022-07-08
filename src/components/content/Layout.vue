@@ -210,6 +210,28 @@
           </el-menu-item>
         </el-submenu>
 
+        <el-submenu index="7"
+                    v-if="permit(PATH.YEAR_END_BONUS_MANAGEMENT.requiresAuth)">
+          <template slot="title">
+            <i class="el-icon-s-management"></i>
+            <span slot="title">总经理事务</span>
+          </template>
+          <el-menu-item
+              :index="PATH.YEAR_END_BONUS_MANAGEMENT.path"
+              v-if="permit(PATH.YEAR_END_BONUS_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-trophy"></i>
+            <span slot="title">年终奖制定</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.PROMOTION_MANAGEMENT.path"
+              v-if="permit(PATH.PROMOTION_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-paperclip"></i>
+            <span slot="title">促销策略管理</span>
+          </el-menu-item>
+        </el-submenu>
+
 <!--        <el-submenu index="7"-->
 <!--          v-if="permit(PATH.GM_APPROVAL.requiresAuth)">-->
 <!--          <template slot="title">-->
@@ -224,6 +246,7 @@
 <!--            <span slot="title">审批</span>-->
 <!--          </el-menu-item>-->
 <!--        </el-submenu>-->
+
       </el-menu>
       <div class="logout-fix">
         <el-tooltip

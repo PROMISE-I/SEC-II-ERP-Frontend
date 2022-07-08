@@ -92,6 +92,8 @@
   </div>
 </template>
 
+<!-- TODO：看看能不能修一下没法显示总额的问题 -->
+
 <script>
 import { returnFirstApproval, returnSecondApproval } from '../../../network/sale'
 export default {

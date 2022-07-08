@@ -1,12 +1,10 @@
 <template>
 
 </template>
-
-<!-- TODO -->
-
+<!--TODO-->
 <script>
 export default {
-  name: "BusinessHistoryView"
+  name: "promotionManagement"
 }
 </script>
 

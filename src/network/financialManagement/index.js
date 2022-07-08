@@ -15,12 +15,14 @@ export const createPayMoney = config => request._post(testAPI.PAY_MONEY_CREATE, 
 export const firstApprovalPayMoney = config => request._get(testAPI.PAY_MONEY_FIRST_APPROVAL, config);
 export const secondApprovalPayMoney = config => request._get(testAPI.PAY_MONEY_SECOND_APPROVAL, config);
 
-
 // 销售明细表
 export const getSaleDetailByRange = config => request._get(testAPI.SALE_DETAIL_SHOW, config);
 export const findSaleDetailByCondition = config => request._post(testAPI.SALE_DETAIL_FIND_BY_CONDITION, config);
 export const getSaleReturnDetailByRange = config => request._get(testAPI.SALE_RETURN_DETAIL_SHOW, config);
 export const findSaleReturnDetailByCondition = config => request._post(testAPI.SALE_RETURN_DETAIL_FIND_BY_CONDITION, config);
+
+// 经营历程表
+export const showBusinessHistory = config => request._get(testAPI.BUSINESS_HISTORY_SHOW, config);
 
 // 经营历程表
 export const showOperateSheet = config => request._get(testAPI.OPERATE_SHEET_SHOW, config);

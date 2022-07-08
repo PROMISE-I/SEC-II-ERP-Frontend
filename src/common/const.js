@@ -136,6 +136,14 @@ export const PATH = {
   // GM
   GM_APPROVAL: {
     path: '/approval',
-    requiresAuth: [ROLE.GM,ROLE.ADMIN]
-  }
+    requiresAuth: [ROLE.GM, ROLE.ADMIN]
+  }, // 审批的页面现在被弃用
+  YEAR_END_BONUS_MANAGEMENT: {
+    path: '/yearEndBonusManagement',
+    requiresAuth: [ROLE.GM, ROLE.ADMIN]
+  }, // 年终奖制定
+  PROMOTION_MANAGEMENT: {
+    path: '/promotionManagement',
+    requiresAuth: [ROLE.GM, ROLE.ADMIN]
+  } // 促销策略管理
 }
