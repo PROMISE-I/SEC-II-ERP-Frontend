@@ -107,6 +107,13 @@
             <span slot="title">销售退货管理</span>
           </el-menu-item>
           <el-menu-item
+              :index="PATH.GIVE_AWAY_VIEW.path"
+              v-if="permit(PATH.GIVE_AWAY_VIEW.requiresAuth)"
+          >
+            <i class="el-icon-sell"></i>
+            <span slot="title">赠品单管理</span>
+          </el-menu-item>
+          <el-menu-item
             :index="PATH.CUSTOMER_VIEW.path"
             v-if="permit(PATH.CUSTOMER_VIEW.requiresAuth)"
           >

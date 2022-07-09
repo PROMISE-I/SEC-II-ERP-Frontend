@@ -40,6 +40,7 @@ const YearEndBonusManagement = () => import("../views/yearEndBonus/YearEndBonusM
 const TotalPricePromotionManagement = () => import("../views/promotion/TotalPricePromotionManagement");
 const CombinatorialPromotionManagement = () => import("../views/promotion/CombinatorialPromotionManagement");
 const LevelPromotionManagement = () => import("../views/promotion/LevelPromotionManagement");
+const GiveAwaySheetManagement = () => import("../views/sale/GiveAwayView")
 
 Vue.use(VueRouter);
 
@@ -153,6 +154,12 @@ const routes = [
     component: SaleReturnView,
     name: "SaleReturnView",
     meta: { requiresAuth: PATH.SALE_RETURN_VIEW.requiresAuth }
+  },
+  {
+    path: PATH.GIVE_AWAY_VIEW.path,
+    component: GiveAwaySheetManagement,
+    name: "GiveAwayView",
+    meta: { requiresAuth: PATH.GIVE_AWAY_VIEW.requiresAuth }
   },
   {
     path: PATH.CUSTOMER_VIEW.path,

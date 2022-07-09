@@ -60,6 +60,14 @@ const SALE_RETURN_FIRST_APPROVAL = '/api/sale-returns/first-approval';
 const SALE_RETURN_SECOND_APPROVAL = '/api/sale-returns/second-approval';
 const SALE_RETURN_ALL = '/api/sale-returns/sheet-show';
 const SALE_RETURN_CREATE = '/api/sale-returns/sheet-make';
+
+// 赠品单
+const GIVE_AWAY_ALL = '/api/give-away/find-all'; // TODO: TBD
+const GIVE_AWAY_FIND_BY_STATE = '/api/give-away/sheet-show';
+const GIVE_AWAY_CREATE = '/api/give-away/sheet-make';
+const GIVE_AWAY_FIRST_APPROVAL = '/api/give-away/first-approval';
+const GIVE_AWAY_SECOND_APPROVAL = '/api/give-away/second-approval';
+
 // 客户管理
 const CUSTOMER_QUERY = '/api/customer/findByType';
 const CUSTOMER_CREATE = '/api/customer/addCustomer';
@@ -278,4 +286,9 @@ module.exports = {
   LEVEL_PROMOTION_UPDATE,
   LEVEL_PROMOTION_FIND_BY_LEVEL,
 
+  GIVE_AWAY_ALL,
+  GIVE_AWAY_CREATE,
+  GIVE_AWAY_FIND_BY_STATE,
+  GIVE_AWAY_FIRST_APPROVAL,
+  GIVE_AWAY_SECOND_APPROVAL,
 };

@@ -14,3 +14,9 @@ export const returnSecondApproval = config => request._get(testAPI.SALE_RETURN_S
 export const getSaleBySheetId = config => request._get(testAPI.SALE_FIND_SHEET_BY_ID, config);
 export const getAllSaleReturn = config => request._get(testAPI.SALE_RETURN_ALL, config);
 export const createSaleReturn = config => request._post(testAPI.SALE_RETURN_CREATE, config);
+
+// 赠送单的部分
+export const getAllGiveAway = config => request._get(testAPI.GIVE_AWAY_ALL, config);
+export const createGiveAway = config => request._post(testAPI.GIVE_AWAY_CREATE, config);
+export const firstApprovalGiveAway = config => request._get(testAPI.GIVE_AWAY_FIRST_APPROVAL, config);
+export const secondApprovalGiveAway = config => request._get(testAPI.GIVE_AWAY_SECOND_APPROVAL, config);

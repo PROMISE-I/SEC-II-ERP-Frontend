@@ -86,6 +86,10 @@ export const PATH = {
     path: '/customerView',
     requiresAuth: [ROLE.SALE_STAFF,ROLE.SALE_MANAGER,ROLE.GM,ROLE.ADMIN]
   },
+  GIVE_AWAY_VIEW: {
+    path: '/giveAwayView',
+    requiresAuth: [ROLE.SALE_STAFF, ROLE.SALE_MANAGER, ROLE.GM, ROLE.ADMIN]
+  }, // 赠送单
 
   // FINANCIAL_STAFF 财务管理人员
   BANK_ACCOUNT_MANAGEMENT: {
