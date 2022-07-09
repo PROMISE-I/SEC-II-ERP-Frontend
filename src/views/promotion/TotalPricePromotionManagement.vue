@@ -6,7 +6,7 @@
       <total-price-promotion-list :list="promotionList" @refresh="getData()"/>
     </div>
     <el-dialog
-        title="创建销售策略"
+        title="创建促销策略"
         :visible.sync="dialogVisible"
         width="40%"
         :before-close="handleClose">
@@ -140,16 +140,12 @@ export default {
           this.promotionForm.voucherAmount = Number(this.promotionForm.voucherAmount)
           this.promotionForm.beginTimeStr = this.beginDate
           this.promotionForm.endTimeStr = this.endDate
-          if (this.promotionForm.hasContent === false) {
-            this.promotionForm.contentList = []
-          } else {
-            this.promotionForm.contentList.forEach((item) => {
-              item.id = null
-              item.quantity = parseInt(item.quantity)
-              item.unitPrice = parseInt(item.unitPrice)
-              item.totalAmount = item.quantity * item.unitPrice
-            })
-          }
+          this.promotionForm.contentList.forEach((item) => {
+            item.id = null
+            item.quantity = parseInt(item.quantity)
+            item.unitPrice = parseInt(item.unitPrice)
+            item.totalAmount = item.quantity * item.unitPrice
+          })
           createTotalPricePromotion(this.promotionForm).then(_res => {
             if (_res.msg === 'Success') {
               this.$message.success('创建成功!')
