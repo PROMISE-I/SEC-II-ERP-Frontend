@@ -129,6 +129,26 @@ const YEAR_END_BONUS_FIND_BY_STAFF_ID = '/api/year-end-awards/find-by-staffId-ye
 const STAFF_ALL_EXCEPT_GM = '/api/staff/findAllExceptGM';
 const SALARY_FIND_TOTAL_AMOUNT_BY_STAFF_ID = '/api/salary/get-total-amount';
 
+// 促销策略
+
+// 基于总价的促销策略
+const TOTAL_PRICE_PROMOTION_ALL = '/api/total-price-promotion/find-all';
+const TOTAL_PRICE_PROMOTION_CREATE = '/api/total-price-promotion/promotion-make';
+const TOTAL_PRICE_PROMOTION_DELETE = '/api/total-price-promotion/promotion-delete';
+const TOTAL_PRICE_PROMOTION_FIND_BY_ID = '/api/total-price-promotion/find-by-id';
+
+// 基于组合的促销策略
+const COMBINATORIAL_PROMOTION_ALL = '/api/combinatorial-discount/findAll';
+const COMBINATORIAL_PROMOTION_CREATE = '/api/combinatorial-discount/create';
+const COMBINATORIAL_PROMOTION_DELETE = '/api/combinatorial-discount/delete';
+const COMBINATORIAL_PROMOTION_UPDATE = '/api/combinatorial-discount/update';
+const COMBINATORIAL_PROMOTION_FIND_BY_PAIR = '/api/combinatorial-discount/findByPair';
+
+// 基于用户级别的促销策略
+const LEVEL_PROMOTION_ALL = '/api/level-promotion/findAll';
+const LEVEL_PROMOTION_UPDATE = '/api/level-promotion/update';
+const LEVEL_PROMOTION_FIND_BY_LEVEL = '/api/level-promotion/findByLevel';
+
 module.exports = {
   TEST_GET,
   TEST_POST,
@@ -239,5 +259,20 @@ module.exports = {
   YEAR_END_BONUS_UPDATE,
   YEAR_END_BONUS_FIND_BY_STAFF_ID,
   STAFF_ALL_EXCEPT_GM,
-  SALARY_FIND_TOTAL_AMOUNT_BY_STAFF_ID
+  SALARY_FIND_TOTAL_AMOUNT_BY_STAFF_ID,
+
+  TOTAL_PRICE_PROMOTION_ALL,
+  TOTAL_PRICE_PROMOTION_CREATE,
+  TOTAL_PRICE_PROMOTION_DELETE,
+  TOTAL_PRICE_PROMOTION_FIND_BY_ID,
+
+  COMBINATORIAL_PROMOTION_ALL,
+  COMBINATORIAL_PROMOTION_CREATE,
+  COMBINATORIAL_PROMOTION_DELETE,
+  COMBINATORIAL_PROMOTION_UPDATE,
+  COMBINATORIAL_PROMOTION_FIND_BY_PAIR,
+
+  LEVEL_PROMOTION_ALL,
+  LEVEL_PROMOTION_UPDATE,
+  LEVEL_PROMOTION_FIND_BY_LEVEL
 };
