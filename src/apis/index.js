@@ -117,6 +117,7 @@ const SALE_RETURN_DETAIL_FIND_BY_CONDITION = '/api/sale-returns/saleReturnsDetai
 
 // 查看经营历程表
 const BUSINESS_HISTORY_SHOW = '/api/business-history/show';
+const SHEET_QUERY_EXIST_BY_ID = '/api/business-history/sheet-exists';
 
 // 查看经营历程表
 const OPERATE_SHEET_SHOW = '/api/operate-sheet/show';
@@ -251,6 +252,7 @@ module.exports = {
   SALE_RETURN_DETAIL_FIND_BY_CONDITION,
 
   BUSINESS_HISTORY_SHOW,
+  SHEET_QUERY_EXIST_BY_ID,
 
   OPERATE_SHEET_SHOW,
 
@@ -274,5 +276,6 @@ module.exports = {
 
   LEVEL_PROMOTION_ALL,
   LEVEL_PROMOTION_UPDATE,
-  LEVEL_PROMOTION_FIND_BY_LEVEL
+  LEVEL_PROMOTION_FIND_BY_LEVEL,
+
 };

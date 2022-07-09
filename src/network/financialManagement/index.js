@@ -23,6 +23,7 @@ export const findSaleReturnDetailByCondition = config => request._post(testAPI.S
 
 // 经营历程表
 export const showBusinessHistory = config => request._post(testAPI.BUSINESS_HISTORY_SHOW, config);
+export const querySheetIdExist = config => request._get(testAPI.SHEET_QUERY_EXIST_BY_ID, config); // 查询某个单号是不是存在，用于判断能否进行红冲操作
 
 // 经营历程表
 export const showOperateSheet = config => request._get(testAPI.OPERATE_SHEET_SHOW, config);

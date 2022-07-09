@@ -33,6 +33,7 @@ export default {
     getData() {
       getAllLevelPromotion({}).then(_res => {
         this.promotionList = _res.result
+        console.log(this.promotionList)
       })
     }
   }

@@ -158,6 +158,7 @@
 <script>
 import {createPurchaseReturn, getAllPurchase} from "@/network/purchase";
 import {deepCopy} from "@/common/utils";
+import  {querySheetIdExist} from "@/network/financialManagement";
 
 export default {
   name: "BHPurchaseReturnList",
@@ -226,36 +227,58 @@ export default {
     },
     reverseCreate(id) {
       // TODO：红冲功能
-      let form = null
-      this.list.forEach(item => {
-        if (item.id === id) {
-          form = deepCopy(item)
+      const config = {
+        params: {
+          sheetId: id + '-0'
         }
-      })
-      console.log(form)
-      for (let item of form.purchaseReturnsSheetContent) {
-        item.quantity = -item.quantity
       }
-      form.state = null
-      form.finalAmount = null
-      form.id += '-0'
-      createPurchaseReturn(form).then(_res => {
-        if (_res.msg === 'Success') {
-          this.$message.success('红冲成功！')
-          this.$emit('refresh')
+      querySheetIdExist(config).then(_res => {
+        if (_res.result === true) {
+          this.$message.error('该单据已经使用了红冲功能！')
+          return
         }
+        let form = null
+        this.list.forEach(item => {
+          if (item.id === id) {
+            form = deepCopy(item)
+          }
+        })
+        console.log(form)
+        for (let item of form.purchaseReturnsSheetContent) {
+          item.quantity = -item.quantity
+        }
+        form.state = null
+        form.finalAmount = null
+        form.id += '-0'
+        createPurchaseReturn(form).then(_res => {
+          if (_res.msg === 'Success') {
+            this.$message.success('红冲成功！')
+            this.$emit('refresh')
+          }
+        })
       })
     },
     reverseAndDuplicateCreate(id) {
       // TODO：红冲并复制
-      let form = null
-      this.list.forEach(item => {
-        if (item.id === id) {
-          form = deepCopy(item)
+      const config = {
+        params: {
+          sheetId: id + '-0'
         }
+      }
+      querySheetIdExist(config).then(_res => {
+        if (_res.result === true) {
+          this.$message.error('该单据已经使用了红冲功能！')
+          return
+        }
+        let form = null
+        this.list.forEach(item => {
+          if (item.id === id) {
+            form = deepCopy(item)
+          }
+        })
+        this.purchaseReturnForm = form
+        this.dialogVisible = true
       })
-      this.purchaseReturnForm = form
-      this.dialogVisible = true
     },
     exportAsExcel() {
       // TODO ：导出 Excel 功能

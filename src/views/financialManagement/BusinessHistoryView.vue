@@ -22,7 +22,9 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="conditionForm.sheetType === 'sale' || conditionForm.sheetType === 'sale-returns'" label="客户" prop="customer">
+        <el-form-item v-if="conditionForm.sheetType === 'sale' || conditionForm.sheetType === 'sale-returns'
+                      || conditionForm.sheetType === 'pay' || conditionForm.sheetType === 'receive'"
+                      label="客户" prop="customer">
           <el-select v-model="conditionForm.customer" placeholder="请选择客户">
             <el-option
                 v-for="item in customerList"
@@ -66,10 +68,10 @@
           <div v-else-if="conditionForm.sheetType === 'purchase-returns'">
             <b-h-purchase-return-list :list="sheetContentList" />
           </div>
-          <div v-else-if="conditionForm.sheetType === 'receive-money'">
+          <div v-else-if="conditionForm.sheetType === 'receive'">
             <b-h-receive-money-list :list="sheetContentList" />
           </div>
-          <div v-else-if="conditionForm.sheetType === 'pay-money'">
+          <div v-else-if="conditionForm.sheetType === 'pay'">
             <b-h-pay-money-list :list="sheetContentList" />
           </div>
           <div v-else-if="conditionForm.sheetType === 'salary'">
@@ -128,8 +130,8 @@ export default {
         { id: 1, title: 'sale-returns',     name: '销售退货单'},
         { id: 2, title: 'purchase',         name: '进货单'},
         { id: 3, title: 'purchase-returns', name: '进货退货单'},
-        { id: 4, title: 'receive-money',    name: '收款单'},
-        { id: 5, title: 'pay-money',        name: '付款单'},
+        { id: 4, title: 'receive',    name: '收款单'},
+        { id: 5, title: 'pay',        name: '付款单'},
         { id: 6, title: 'salary',           name: '工资单'},
         { id: 7, title: 'present',          name: '赠送单'},
       ],      // 单据类型
