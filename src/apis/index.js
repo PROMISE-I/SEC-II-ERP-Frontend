@@ -62,7 +62,7 @@ const SALE_RETURN_ALL = '/api/sale-returns/sheet-show';
 const SALE_RETURN_CREATE = '/api/sale-returns/sheet-make';
 
 // 赠品单
-const GIVE_AWAY_ALL = '/api/give-away/find-all'; // TODO: TBD
+const GIVE_AWAY_ALL = '/api/give-away/find-all'; 
 const GIVE_AWAY_FIND_BY_STATE = '/api/give-away/sheet-show';
 const GIVE_AWAY_CREATE = '/api/give-away/sheet-make';
 const GIVE_AWAY_FIRST_APPROVAL = '/api/give-away/first-approval';

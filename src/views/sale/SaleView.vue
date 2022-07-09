@@ -56,10 +56,10 @@
             </el-select>
           </el-form-item>
           <el-form-item label="折扣: " prop="discount">
-            <el-input v-model="saleForm.discount"></el-input>
+            <el-input v-model="saleForm.discount" disabled></el-input>
           </el-form-item>
           <el-form-item label="代金券总额: " prop="voucherAmount">
-            <el-input v-model="saleForm.voucherAmount"></el-input>
+            <el-input v-model="saleForm.voucherAmount" disabled></el-input>
           </el-form-item>
           <el-form-item
             v-for="(item, index) in saleForm.saleSheetContent"
@@ -133,12 +133,12 @@ export default {
         supplier: [
           { required: true, message: '请选择一个销售商', trigger: 'change' }
         ],
-        discount: [
-          { required: true, message: '请输入折扣', trigger: 'change' }
-        ],
-        voucherAmount: [
-          { required: true, message: '请输入代金券总额', trigger: 'change' }
-        ]
+        // discount: [
+        //   { required: true, message: '请输入折扣', trigger: 'change' }
+        // ],
+        // voucherAmount: [
+        //   { required: true, message: '请输入代金券总额', trigger: 'change' }
+        // ]
       },
       commodityList: []
     }
@@ -180,8 +180,8 @@ export default {
           this.saleForm.state = null
           this.saleForm.rawTotalAmount = null
           this.saleForm.finalAmount = null
-          this.saleForm.discount = Number(this.saleForm.discount)
-          this.saleForm.voucherAmount = Number(this.saleForm.voucherAmount)
+          // this.saleForm.discount = Number(this.saleForm.discount)
+          // this.saleForm.voucherAmount = Number(this.saleForm.voucherAmount)
           this.saleForm.saleSheetContent.forEach((item) => {
             item.id = null
             item.purchaseSheetId = null
