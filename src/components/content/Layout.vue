@@ -213,8 +213,8 @@
         <el-submenu index="7"
                     v-if="permit(PATH.YEAR_END_BONUS_MANAGEMENT.requiresAuth)">
           <template slot="title">
-            <i class="el-icon-s-management"></i>
-            <span slot="title">总经理事务</span>
+            <i class="el-icon-trophy"></i>
+            <span slot="title">年终奖</span>
           </template>
           <el-menu-item
               :index="PATH.YEAR_END_BONUS_MANAGEMENT.path"
@@ -223,12 +223,34 @@
             <i class="el-icon-trophy"></i>
             <span slot="title">年终奖制定</span>
           </el-menu-item>
-          <el-menu-item
-              :index="PATH.PROMOTION_MANAGEMENT.path"
-              v-if="permit(PATH.PROMOTION_MANAGEMENT.requiresAuth)"
-          >
+        </el-submenu>
+
+        <el-submenu index="8"
+                    v-if="permit(PATH.TOTAL_PRICE_PROMOTION_MANAGEMENT.requiresAuth)">
+          <template slot="title">
             <i class="el-icon-paperclip"></i>
             <span slot="title">促销策略管理</span>
+          </template>
+          <el-menu-item
+              :index="PATH.TOTAL_PRICE_PROMOTION_MANAGEMENT.path"
+              v-if="permit(PATH.TOTAL_PRICE_PROMOTION_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-paperclip"></i>
+            <span slot="title">基于总价的促销策略</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.COMBINATORIAL_PROMOTION_MANAGEMENT.path"
+              v-if="permit(PATH.COMBINATORIAL_PROMOTION_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-paperclip"></i>
+            <span slot="title">基于组合的促销策略</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.LEVEL_PROMOTION_MANAGEMENT.path"
+              v-if="permit(PATH.LEVEL_PROMOTION_MANAGEMENT.requiresAuth)"
+          >
+            <i class="el-icon-paperclip"></i>
+            <span slot="title">基于用户级别的促销策略</span>
           </el-menu-item>
         </el-submenu>
 

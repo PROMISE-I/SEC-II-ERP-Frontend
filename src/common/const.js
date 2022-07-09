@@ -145,5 +145,17 @@ export const PATH = {
   PROMOTION_MANAGEMENT: {
     path: '/promotionManagement',
     requiresAuth: [ROLE.GM, ROLE.ADMIN]
-  } // 促销策略管理
+  }, // 促销策略管理,
+  TOTAL_PRICE_PROMOTION_MANAGEMENT: {
+    path: '/totalPricePromotionManagement',
+    requiresAuth: [ROLE.GM, ROLE.ADMIN]
+  },
+  COMBINATORIAL_PROMOTION_MANAGEMENT: {
+    path: '/combinatorialPromotionManagement',
+    requiresAuth: [ROLE.GM, ROLE.ADMIN]
+  },
+  LEVEL_PROMOTION_MANAGEMENT: {
+    path: '/levelPromotionManagement',
+    requiresAuth: [ROLE.GM, ROLE.ADMIN]
+  }
 }

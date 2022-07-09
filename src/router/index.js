@@ -33,11 +33,13 @@ const SalarySheetManagement = () => import("../views/staff/SalarySheetManagement
 const SaleDetailView = () => import("../views/financialManagement/SaleDetailView");
 const BusinessHistoryView = () => import("../views/financialManagement/BusinessHistoryView");
 const OperateSheetView = () => import("../views/financialManagement/OperateSheetView");
-const StaffManagement = () => import("../views/staff/StaffManagement")
-const PositionManagement = () => import("../views/staff/PositionManagement")
-const Attendance = () => import("../views/attendance/Attendance")
-const YearEndBonusManagement = () => import("../views/yearEndBonus/YearEndBonusManagement")
-const PromotionManagement = () => import("../views/promotion/promotionManagement")
+const StaffManagement = () => import("../views/staff/StaffManagement");
+const PositionManagement = () => import("../views/staff/PositionManagement");
+const Attendance = () => import("../views/attendance/Attendance");
+const YearEndBonusManagement = () => import("../views/yearEndBonus/YearEndBonusManagement");
+const TotalPricePromotionManagement = () => import("../views/promotion/TotalPricePromotionManagement");
+const CombinatorialPromotionManagement = () => import("../views/promotion/CombinatorialPromotionManagement");
+const LevelPromotionManagement = () => import("../views/promotion/LevelPromotionManagement");
 
 Vue.use(VueRouter);
 
@@ -221,10 +223,20 @@ const routes = [
   },
   // 促销策略制定
   {
-    path: PATH.PROMOTION_MANAGEMENT.path,
-    component: PromotionManagement,
-    meta: { requiresAuth: PATH.PROMOTION_MANAGEMENT.requiresAuth }
-  },
+    path: PATH.TOTAL_PRICE_PROMOTION_MANAGEMENT.path,
+    component: TotalPricePromotionManagement,
+    meta: { requiresAuth: PATH.TOTAL_PRICE_PROMOTION_MANAGEMENT.requiresAuth }
+  }, // 基于总价的促销策略
+  {
+    path: PATH.COMBINATORIAL_PROMOTION_MANAGEMENT.path,
+    component: CombinatorialPromotionManagement,
+    meta: { requiresAuth: PATH.COMBINATORIAL_PROMOTION_MANAGEMENT.requiresAuth }
+  }, // 基于组合的促销策略
+  {
+    path: PATH.LEVEL_PROMOTION_MANAGEMENT.path,
+    component: LevelPromotionManagement,
+    meta: { requiresAuth: PATH.LEVEL_PROMOTION_MANAGEMENT.requiresAuth }
+  }, // 基于用户等级的促销策略
   // 审批
   {
     path: PATH.GM_APPROVAL.path,
