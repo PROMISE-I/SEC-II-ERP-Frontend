@@ -65,11 +65,6 @@
                 width="180">
             </el-table-column>
             <el-table-column
-                prop="pid"
-                label="商品id"
-                width="180">
-            </el-table-column>
-            <el-table-column
                 prop="quantity"
                 label="数量"
                 width="200">

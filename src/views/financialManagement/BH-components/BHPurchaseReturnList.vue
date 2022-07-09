@@ -59,11 +59,6 @@
               :header-cell-style="{'text-align':'center'}"
               :cell-style="{'text-align':'center'}">
             <el-table-column
-                prop="id"
-                label="id"
-                width="180">
-            </el-table-column>
-            <el-table-column
                 prop="pid"
                 label="商品id"
                 width="180">

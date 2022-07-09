@@ -37,7 +37,7 @@
             <span><strong>对应的级别 </strong>{{item.level}}</span>
           </el-col>
           <el-col :span="6">
-            <span><strong>折让比例 </strong>{{item.discount}}(元)</span>
+            <span><strong>折让比例 </strong>{{item.discount}}</span>
           </el-col>
           <el-col :span="6">
             <span><strong>代金券 </strong>{{item.coupon}}(元)</span>

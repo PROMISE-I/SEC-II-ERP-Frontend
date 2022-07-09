@@ -174,7 +174,7 @@
         </el-submenu>
 
         <el-submenu index="5"
-                    v-if="permit(PATH.STAFF_MANAGEMENT.requiresAuth)">
+                    v-if="permit(PATH.SALARY_SHEET_MANAGEMENT.requiresAuth)">
           <template slot="title">
             <i class="el-icon-user-solid"></i>
             <span slot="title">人力资源管理</span>

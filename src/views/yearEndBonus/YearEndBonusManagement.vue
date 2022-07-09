@@ -100,7 +100,6 @@
     </el-dialog>
   </Layout>
 </template>
-<!-- TODO -->
 <script>
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
@@ -240,7 +239,7 @@ export default {
         }
       }
       getTotalAmountByStaffId(config).then(_res => {
-        this.$alert('前 11 月总工资为 ' + _res.result + '元', '查询前 11 月总工资', {
+        this.$alert('前 11 月总工资为 ' + _res.result + ' 元', '查询前 11 月总工资', {
           confirmButtonText: '确定',
           callback: action => {
             this.$message({
