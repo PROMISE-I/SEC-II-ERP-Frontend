@@ -18,3 +18,4 @@ export const getSalaryAmountByStaffId = config => request._get(testAPI.SALARY_AM
 export const createSalary = config => request._get(testAPI.SALARY_CREATE, config);
 export const firstApprovalSalary = config => request._get(testAPI.SALARY_FIRST_APPROVAL, config);
 export const secondApprovalSalary = config => request._get(testAPI.SALARY_SECOND_APPROVAL, config);
+export const createSalaryByContent = config => request._post(testAPI.SALARY_CREATE_, config);

@@ -34,7 +34,7 @@
       </template>
       <div>
         <el-row>
-          <el-col :span="3">
+          <el-col :span="12">
             <span><strong>所属销售单id: </strong>{{item.saleSheetId}}</span>
           </el-col>
         </el-row>
@@ -118,7 +118,7 @@ export default {
     approval(id) {
       let config = {
         params: {
-          saleSheetId: id,
+          sheetId: id,
           state: this.type === 1 ? 'PENDING_LEVEL_2' : 'SUCCESS'
         }
       }
@@ -143,7 +143,7 @@ export default {
     deny(id) {
       let config = {
         params: {
-          saleSheetId: id,
+          sheetId: id,
           state: 'FAILURE'
         }
       }

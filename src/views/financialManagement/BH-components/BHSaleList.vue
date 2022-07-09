@@ -6,9 +6,12 @@
         <el-row>
           <el-col :span="18">
             <span><strong>id: </strong>{{item.id}}</span>
-            <el-popconfirm title="确认使用红冲功能吗？">
+            <el-popconfirm
+                title="确定要使用红冲功能吗？"
+                @confirm="reverseCreate(item.id)"
+            >
               <el-button v-if="isGM() === false" style="margin-left: 10px"
-                         type="danger" size="mini" @click="reverseCreate(item.id)" slot="reference">
+                         type="danger" size="mini" slot="reference">
                 红冲
               </el-button>
             </el-popconfirm>
@@ -115,10 +118,10 @@
             </el-select>
           </el-form-item>
           <el-form-item label="折扣: " prop="discount">
-            <el-input v-model="saleForm.discount"></el-input>
+            <el-input v-model="saleForm.discount" disabled></el-input>
           </el-form-item>
           <el-form-item label="代金券总额: " prop="voucherAmount">
-            <el-input v-model="saleForm.voucherAmount"></el-input>
+            <el-input v-model="saleForm.voucherAmount" disabled></el-input>
           </el-form-item>
           <el-form-item
               v-for="(item, index) in saleForm.saleSheetContent"
@@ -153,10 +156,11 @@
     </el-dialog>
   </div>
 </template>
-<!--TODO-->
 <script>
 import {createSale, getAllCustomer} from "@/network/sale";
 import {getAllCommodity} from "@/network/commodity";
+import {deepCopy} from "@/common/utils";
+import {querySheetIdExist} from "@/network/financialManagement";
 
 export default {
   name: "BHSaleList",
@@ -220,19 +224,36 @@ export default {
     },
     reverseCreate(id) {
       // TODO：红冲功能
-      let form = this.list[id]
-      for (let item of form.saleSheetContent) {
-        item.quantity = -item.quantity
-      }
-      form.state = null
-      form.finalAmount = null
-      form.id = form.id + '-0'
-      console.log(form)
-      createSale(form).then(_res => {
-        if (_res.msg === 'Success') {
-          this.$message.success('红冲成功！')
-          this.$emit('refresh')
+      const config = {
+        params: {
+          sheetId: id + '-0'
         }
+      }
+      querySheetIdExist(config).then(_res => {
+        console.log(_res.result)
+        if (_res.result === true) {
+          this.$message.error('该单据已经使用过红冲功能！')
+          return
+        }
+        let form = null
+        this.list.forEach(item => {
+          if (id == item.id) {
+            form = deepCopy(item)
+          }
+        })
+        for (let item of form.saleSheetContent) {
+          item.quantity = -item.quantity
+        }
+        form.state = null
+        form.finalAmount = null
+        form.id += '-0'
+        console.log(form)
+        createSale(form).then(_res => {
+          if (_res.msg === 'Success') {
+            this.$message.success('红冲成功！')
+            this.$emit('refresh')
+          }
+        })
       })
     },
     submitForm(formName) {
@@ -242,8 +263,6 @@ export default {
           this.saleForm.id = this.saleForm.id + '-1'
           this.saleForm.rawTotalAmount = null
           this.saleForm.finalAmount = null
-          this.saleForm.discount = Number(this.saleForm.discount)
-          this.saleForm.voucherAmount = Number(this.saleForm.voucherAmount)
           this.saleForm.saleSheetContent.forEach((item) => {
             item.id = null
             item.purchaseSheetId = null
@@ -264,14 +283,25 @@ export default {
     },
     reverseAndDuplicateCreate(id) {
       // TODO：红冲并复制
-      let form = null
-      this.list.forEach(item => {
-        if (item.id === id) {
-          form = item
+      const config = {
+        params: {
+          sheetId: id + '-0'
         }
+      }
+      querySheetIdExist(config).then(_res => {
+        if (_res.result === true) {
+          this.$message.error('该单据已经使用过红冲功能！')
+          return
+        }
+        let form = null
+        this.list.forEach(item => {
+          if (item.id === id) {
+            form = deepCopy(item)
+          }
+        })
+        this.saleForm = form
+        this.dialogVisible = true
       })
-      this.saleForm = form
-      this.dialogVisible = true
     },
     exportAsExcel() {
       // TODO ：导出 Excel 功能
@@ -294,13 +324,13 @@ export default {
       for (let item of this.list) {
         for (let content of item.saleSheetContent) {
           let tmp = content
-          tmp.id = item.id
+          tmp.outId = item.id
           contentList.push(tmp)
         }
       }
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['id', '商品id', '数量', '单价', '备注']
-        const filterVal = ['id', 'pid', 'quantity', 'unitPrice', 'remark']
+        const filterVal = ['outId', 'pid', 'quantity', 'unitPrice', 'remark']
         const list = contentList
         const data = this.formatJson(filterVal, list)
         const filename = 'business-history-sale-content' + curTime

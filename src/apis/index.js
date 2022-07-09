@@ -62,7 +62,7 @@ const SALE_RETURN_ALL = '/api/sale-returns/sheet-show';
 const SALE_RETURN_CREATE = '/api/sale-returns/sheet-make';
 
 // 赠品单
-const GIVE_AWAY_ALL = '/api/give-away/find-all'; 
+const GIVE_AWAY_ALL = '/api/give-away/find-all';
 const GIVE_AWAY_FIND_BY_STATE = '/api/give-away/sheet-show';
 const GIVE_AWAY_CREATE = '/api/give-away/sheet-make';
 const GIVE_AWAY_FIRST_APPROVAL = '/api/give-away/first-approval';
@@ -116,6 +116,7 @@ const SALARY_AMOUNT_GET_BY_ID = '/api/salary/get-salary';
 const SALARY_CREATE = '/api/salary/sheet-make';
 const SALARY_FIRST_APPROVAL = '/api/salary/first-approval';
 const SALARY_SECOND_APPROVAL = '/api/salary/second-approval';
+const SALARY_CREATE_ = '/api/salary/red-ink-offset-sheet-make';
 
 // 查看销售明细表
 const SALE_DETAIL_SHOW = '/api/sale/saleDetail-byRange';
@@ -253,6 +254,7 @@ module.exports = {
   SALARY_CREATE,
   SALARY_FIRST_APPROVAL,
   SALARY_SECOND_APPROVAL,
+  SALARY_CREATE_,
 
   SALE_DETAIL_SHOW,
   SALE_DETAIL_FIND_BY_CONDITION,

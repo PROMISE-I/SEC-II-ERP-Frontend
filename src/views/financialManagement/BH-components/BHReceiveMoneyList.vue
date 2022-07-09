@@ -201,6 +201,7 @@ export default {
           this.receiveMoneyForm.operator = sessionStorage.getItem("name")
           this.receiveMoneyForm.state = null
           this.receiveMoneyForm.transferList.forEach((item) => {
+            item.id = null
             item.bankAccountId = parseInt(item.bankAccountId)
             item.amount = Number(item.amount)
           })
@@ -210,7 +211,7 @@ export default {
           }
           createReceiveMoney(this.receiveMoneyForm).then(_res => {
             if (_res.msg === 'Success') {
-              this.$message.success('创建成功！')
+              this.$message.success('复制成功！')
               this.dialogVisible = false
               this.resetForm()
               this.reverseCreate(id)
@@ -247,13 +248,13 @@ export default {
             form = deepCopy(item)
           }
         })
-        console.log(form)
         for (let item of form.transferList) {
           item.amount = -item.amount
+          item.id = null
         }
         form.state = null
-        form.totalAmount = -form.totalAmount
         form.id += '-0'
+        console.log(form)
         createReceiveMoney(form).then(_res => {
           if (_res.msg === 'Success') {
             this.$message.success('红冲成功！')
@@ -311,7 +312,7 @@ export default {
       }
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['id', '银行账户id', '转账金额（元）', '备注']
-        const filterVal = ['outId', 'bankAccountId', 'account', 'remark']
+        const filterVal = ['outId', 'bankAccountId', 'amount', 'remark']
         const list = contentList
         const data = this.formatJson(filterVal, list)
         const filename = 'business-history-receive-money-content' + curTime

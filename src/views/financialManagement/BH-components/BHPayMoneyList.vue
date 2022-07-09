@@ -117,12 +117,13 @@
     </el-dialog>
   </div>
 </template>
-<!--TODO-->
+
 <script>
-import {createPurchase, getAllCustomer} from "@/network/purchase";
+import {getAllCustomer} from "@/network/purchase";
 import {getAllBankAccount} from "@/network/accountManagement";
 import {createPayMoney} from "@/network/financialManagement";
 import {deepCopy} from "@/common/utils";
+import {querySheetIdExist} from "@/network/financialManagement";
 
 export default {
   name: "BHPayMoneyList",
@@ -225,36 +226,59 @@ export default {
     },
     reverseCreate(id) {
       // TODO：红冲功能
-      let form = null
-      this.list.forEach(item => {
-        if (item.id === id) {
-          form = deepCopy(item)
+      const config = {
+        params: {
+          sheetId: id + '-0'
         }
-      })
-      console.log(form)
-      for (let item of form.purchaseSheetContent) {
-        item.quantity = -item.quantity
       }
-      form.state = null
-      form.finalAmount = null
-      form.id = form.id + '-0'
-      createPurchase(form).then(_res => {
-        if (_res.msg === 'Success') {
-          this.$message.success('红冲成功！')
-          this.$emit('refresh')
+      querySheetIdExist(config).then(_res => {
+        if (_res.result === true) {
+          this.$message.error('该单据已经使用红冲功能！')
+          return
         }
+        let form = null
+        this.list.forEach(item => {
+          if (item.id === id) {
+            form = deepCopy(item)
+          }
+        })
+        console.log(form)
+        for (let item of form.transferList) {
+          item.amount = -item.amount
+          item.id = null
+        }
+        form.state = null
+        form.finalAmount = null
+        form.id = form.id + '-0'
+        createPayMoney(form).then(_res => {
+          if (_res.msg === 'Success') {
+            this.$message.success('红冲成功！')
+            this.$emit('refresh')
+          }
+        })
       })
     },
     reverseAndDuplicateCreate(id) {
       // TODO：红冲并复制，修改调试这两个函数
-      let form = null
-      this.list.forEach(item => {
-        if (item.id === id) {
-          form = deepCopy(item)
+      const config = {
+        params: {
+          sheetId: id + '-0'
         }
+      }
+      querySheetIdExist(config).then(_res => {
+        if (_res.result === true) {
+          this.$message.error('该单据已经使用红冲功能！')
+          return
+        }
+        let form = null
+        this.list.forEach(item => {
+          if (item.id === id) {
+            form = deepCopy(item)
+          }
+        })
+        this.purchaseForm = form
+        this.dialogVisible = true
       })
-      this.purchaseForm = form
-      this.dialogVisible = true
     },
     addBankAccount() {
       this.payMoneyForm.transferList.push({})
@@ -292,7 +316,7 @@ export default {
       }
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['id', '银行账户id', '转账金额（元）', '备注']
-        const filterVal = ['outId', 'bankAccountId', 'account', 'remark']
+        const filterVal = ['outId', 'bankAccountId', 'amount', 'remark']
         const list = contentList
         const data = this.formatJson(filterVal, list)
         const filename = 'business-history-pay-money-content' + curTime

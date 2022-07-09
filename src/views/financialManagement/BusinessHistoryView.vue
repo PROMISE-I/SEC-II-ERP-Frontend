@@ -133,7 +133,7 @@ export default {
         { id: 4, title: 'receive',    name: '收款单'},
         { id: 5, title: 'pay',        name: '付款单'},
         { id: 6, title: 'salary',           name: '工资单'},
-        { id: 7, title: 'present',          name: '赠送单'},
+        // { id: 7, title: 'present',          name: '赠送单'},
       ],      // 单据类型
       customerList: [],       // 客户
       operatorList: [],       // 操作员
@@ -176,7 +176,7 @@ export default {
       this.commodityList = _res.result
     })
     getAllCustomer({ params: { type: 'SELLER' } }).then(_res => {
-      this.customerList = _res.result
+      this.customerList = this.customerList.concat(_res.result)
     })
     getAllCustomer({ params: { type: 'SUPPLIER' } }).then(_res => {
       this.customerList = this.customerList.concat(_res.result)
@@ -189,14 +189,15 @@ export default {
         begin: this.beginDate,
         end: this.endDate,
         operator: this.conditionForm.operator,
+        salesman: this.conditionForm.operator,
         customer: parseInt(this.conditionForm.customer),
         type: this.conditionForm.sheetType
       }
       this.sheetContentList = []
       showBusinessHistory(condition).then(_res => {
         let allSheets = _res.result
+        console.log(allSheets)
         allSheets.forEach(sheet => {
-          console.log(sheet)
           if (this.conditionForm.sheetType === sheet.type) {
             this.sheetContentList.push(sheet.sheetObject)
           }

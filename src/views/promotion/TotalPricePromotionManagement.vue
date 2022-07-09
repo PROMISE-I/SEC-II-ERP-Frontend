@@ -123,6 +123,7 @@ export default {
       getAllTotalPricePromotion({}).then(_res => {
         this.promotionList = _res.result
       })
+      console.log(this.promotionList)
     },
     handleClose(done) {
       this.$confirm('确认关闭？')
@@ -144,7 +145,7 @@ export default {
             item.id = null
             item.quantity = parseInt(item.quantity)
             item.unitPrice = parseInt(item.unitPrice)
-            item.totalAmount = item.quantity * item.unitPrice
+            item.totalPrice = item.quantity * item.unitPrice
           })
           createTotalPricePromotion(this.promotionForm).then(_res => {
             if (_res.msg === 'Success') {

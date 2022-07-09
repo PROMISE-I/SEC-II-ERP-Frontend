@@ -14,7 +14,7 @@ import { ROLE, PATH } from "../common/const";
       } else if(role === ROLE.INVENTORY_MANAGER) {
         this.$router.push(PATH.COMMODITY_CLASSIFICATION.path);
       } else if(role === ROLE.GM) {
-        this.$router.push(PATH.GM_APPROVAL);
+        this.$router.push(PATH.YEAR_END_BONUS_MANAGEMENT.path);
       } else if (role === ROLE.SALE_STAFF || role === ROLE.SALE_MANAGER) {
         this.$router.push(PATH.PURCHASE_VIEW)
       } else if (role == ROLE.FINANCIAL_STAFF) {
