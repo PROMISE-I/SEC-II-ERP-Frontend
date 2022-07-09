@@ -15,19 +15,19 @@
         <h4>{{beginDate}}&nbsp;至&nbsp;{{endDate}} 内的</h4>
         <div class="mt15">
           <span><strong> 折让后总收入合计为: </strong></span>
-          <span>{{finalIncome}}</span>
+          <span>{{finalIncome}} 元</span>
         </div>
         <div class="mt15">
           <span><strong> 折让总额合计为: </strong></span>
-          <span>{{discountAmount}}</span>
+          <span>{{discountedAmount}} 元</span>
         </div>
         <div class="mt15">
           <span><strong> 总支出合计为: </strong></span>
-          <span>{{cost}}</span>
+          <span>{{cost}} 元</span>
         </div>
         <div class="mt15">
           <span><strong> 利润合计为: </strong></span>
-          <span>{{profit}}</span>
+          <span>{{profit}} 元</span>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@ export default {
     return {
       date: '',
       finalIncome: '',      // 折让后总额
-      discountAmount: '',   // 折让金额
+      discountedAmount: '',   // 折让金额
       cost: '',             // 总支出
       profit: ''            // 利润
     }
@@ -74,7 +74,7 @@ export default {
       showOperateSheet(config).then(_res => {
         let res = _res.result
         this.finalIncome = res.finalIncome
-        this.discountAmount = res.discountAmount
+        this.discountedAmount = res.discountedAmount
         this.cost = res.cost
         this.profit = res.profit
       })
