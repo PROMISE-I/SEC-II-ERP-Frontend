@@ -266,6 +266,7 @@ export default {
         if(_res.msg == 'Success'){
           let staff = _res.result
           this.editForm = staff
+          this.editForm.birthday = new Date(this.editForm.birthday)
           this.editDialogVisible = true
         } else {
           console.log('Something wrong!')
