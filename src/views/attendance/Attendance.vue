@@ -34,6 +34,7 @@ export default {
     return {
       value: new Date(),
       attendanceDetail: [],
+      todayAttendanceInfo: false
     }
   },
   watch: {
@@ -44,7 +45,11 @@ export default {
     }
   },
   async mounted() {
-    await this.getAttendanceDetail(this.value.getFullYear(), this.value.getMonth())
+    await this.getAttendanceDetail(this.value.getFullYear(), this.value.getMonth()).then(_res => {
+      const date = new Date()
+      const today = this.getDateStr(date)
+      this.todayAttendanceInfo = this.isChecked({ day : today })
+    })
   },
   methods: {
     getDayCountOfMonth(year, month) {
@@ -94,7 +99,7 @@ export default {
         date: today
       }
       // console.log({ day: this.getDateStr(date) })
-      if (this.isChecked({ day: this.getDateStr(date) })) {
+      if (this.todayAttendanceInfo === true) { // 不能使用 this.isChecked ，在月份不同的时候会显示问题
         this.$message.info('今天已经打过卡了，明天再来吧~')
       } else {
         clockIn(attendanceRecordVO).then(_res => {
