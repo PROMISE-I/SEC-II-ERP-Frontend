@@ -74,8 +74,6 @@
 
 <script>
 
-// TODO：尝试显示账户名称
-
 import {firstApprovalPayMoney, secondApprovalPayMoney} from "@/network/financialManagement";
 
 export default {

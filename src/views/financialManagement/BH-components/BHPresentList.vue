@@ -122,7 +122,7 @@ export default {
           .catch(_ => {});
     },
     reverseCreate(id) {
-      // TODO：红冲功能
+      // 红冲功能
       const config = {
         params: {
           sheetId: id + '-0'
@@ -171,7 +171,7 @@ export default {
       })
     },
     reverseAndDuplicateCreate(id) {
-      // TODO：红冲并复制
+      // 红冲并复制
       const config = {
         params: {
           sheetId: id + '-0'
@@ -193,7 +193,7 @@ export default {
       })
     },
     exportAsExcel() {
-      // TODO ：导出 Excel 功能
+      // 导出 Excel 功能
       let curTime = new Date().getTime()
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['id', '供应商id', '业务员', '操作员', '折让前总额', '折扣', '使用代金券总和', '折让后总额', '备注']

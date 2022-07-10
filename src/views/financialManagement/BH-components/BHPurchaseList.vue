@@ -230,7 +230,7 @@ export default {
       });
     },
     reverseCreate(id) {
-      // TODO：红冲功能
+      // 红冲功能
       const config = {
         params: {
           sheetId: id + '-0'
@@ -282,7 +282,7 @@ export default {
         this.purchaseForm = form
         this.dialogVisible = true
       })
-      // TODO：红冲并复制
+      // 红冲并复制
     },
     resetForm() {
       this.purchaseForm = {
@@ -306,7 +306,7 @@ export default {
       }
     },
     exportAsExcel() {
-      // TODO ：导出 Excel 功能
+      // 导出 Excel 功能
       let curTime = new Date().getTime()
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['id', '供应商id', '操作员', '总额合计', '备注']

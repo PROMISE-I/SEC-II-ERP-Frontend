@@ -78,7 +78,6 @@ import {
   secondApprovalReceiveMoney
 } from "@/network/financialManagement";
 import { findBankAccountById } from "@/network/accountManagement";
-// TODO: 显示账户名称而不是账户 id
 
 export default {
   name: "ReceiveMoneyList",

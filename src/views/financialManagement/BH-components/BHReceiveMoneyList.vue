@@ -117,7 +117,7 @@
     </el-dialog>
   </div>
 </template>
-<!--TODO-->
+
 <script>
 import {getAllCustomer} from "@/network/purchase";
 import {getAllBankAccount} from "@/network/accountManagement";
@@ -231,7 +231,7 @@ export default {
       }
     },
     reverseCreate(id) {
-      // TODO：红冲功能
+      // 红冲功能
       const config = {
         params: {
           sheetId: id + '-0'
@@ -264,7 +264,7 @@ export default {
       })
     },
     reverseAndDuplicateCreate(id) {
-      // TODO：红冲并复制
+      // 红冲并复制
       const config = {
         params: {
           sheetId: id + '-0'
@@ -286,7 +286,7 @@ export default {
       })
     },
     exportAsExcel() {
-      // TODO ：导出 Excel 功能
+      // 导出 Excel 功能
       let curTime = new Date().getTime()
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['id', '客户id', '操作员', '转账总额', '备注']

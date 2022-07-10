@@ -86,8 +86,6 @@
   </Layout>
 </template>
 
-<!-- TODO -->
-
 <script>
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";

@@ -97,7 +97,6 @@
   </Layout>
 </template>
 <script>
-// TODO：页面美化，等这个接口弄好了之后重新改过来，调试随机抖动的问题
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
 import {
