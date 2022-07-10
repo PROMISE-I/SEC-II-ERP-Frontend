@@ -276,7 +276,7 @@ export default {
             form = deepCopy(item)
           }
         })
-        this.purchaseForm = form
+        this.payMoneyForm = form
         this.dialogVisible = true
       })
     },
