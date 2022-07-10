@@ -195,7 +195,8 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.payMoneyForm.id = null
+          let id = this.payMoneyForm.id
+          this.payMoneyForm.id += '-0'
           this.payMoneyForm.customer = parseInt(this.payMoneyForm.customer)
           this.payMoneyForm.operator = sessionStorage.getItem("name")
           this.payMoneyForm.state = null
@@ -215,10 +216,10 @@ export default {
           }
           createPayMoney(this.payMoneyForm).then(_res => {
             if (_res.msg === 'Success') {
-              this.$message.success('创建成功！')
+              this.$message.success('复制成功！')
               this.dialogVisible = false
               this.resetForm()
-              this.getPayMoney()
+              this.reverseCreate(id)
             }
           })
         }
