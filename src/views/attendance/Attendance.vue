@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       value: new Date(),
-      attendanceDetail: []
+      attendanceDetail: [],
     }
   },
   watch: {

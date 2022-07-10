@@ -111,7 +111,6 @@ import {
   getAllStaffExceptGM,
   getTotalAmountByStaffId
 } from "@/network/yearEndBonus";
-import {getAllStaff} from "@/network/staff";
 
 export default {
   name: "YearEndBonusManagement",

@@ -49,10 +49,10 @@ export default {
   data() {
     return {
       date: '',
-      finalIncome: '',      // 折让后总额
+      finalIncome: '',        // 折让后总额
       discountedAmount: '',   // 折让金额
-      cost: '',             // 总支出
-      profit: ''            // 利润
+      cost: '',               // 总支出
+      profit: ''              // 利润
     }
   },
   computed: {
