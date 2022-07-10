@@ -196,9 +196,8 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let id = this.payMoneyForm.id
-          this.payMoneyForm.id += '-0'
+          this.payMoneyForm.id += '-1'
           this.payMoneyForm.customer = parseInt(this.payMoneyForm.customer)
-          this.payMoneyForm.operator = sessionStorage.getItem("name")
           this.payMoneyForm.state = null
           this.payMoneyForm.transferList.forEach((item) => {
             item.id = null
@@ -208,11 +207,6 @@ export default {
           this.payMoneyForm.totalAmount = 0
           for (let payMoneyTransfer in this.payMoneyForm.transferList) {
             this.payMoneyForm.totalAmount += payMoneyTransfer.amount
-          }
-          let user = {
-            name : sessionStorage.getItem("name"),
-            role : sessionStorage.getItem("role"),
-            password : null
           }
           createPayMoney(this.payMoneyForm).then(_res => {
             if (_res.msg === 'Success') {
