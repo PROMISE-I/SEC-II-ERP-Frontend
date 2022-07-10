@@ -20,13 +20,10 @@
 <script>
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
-import {oneTick} from "@/common/utils";
 import {
   check,
   clockIn
 } from "@/network/attendance";
-
-
 export default {
   name: "Attendance",
   components: {
@@ -70,6 +67,7 @@ export default {
       // console.log(year, month + 1, this.attendanceDetail)
     },
     getDateStr(date) {
+      // 获取 yyyy-mm-dd 格式化的字符串
       let ret = String(date.getFullYear())
       while (ret.length < 4) {
         ret = '0' + ret
